@@ -1,0 +1,326 @@
+/* Estando en carpeta view: sass --watch styles/scss:styles/css */
+/* Estando en carpeta view: sass --watch styles/scss:styles/css */
+body, input {
+  font-family: Work Sans;
+}
+
+*::selection {
+  background-color: #db6400;
+  color: #fff;
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: url("../../assets/fonts/WorkSans.ttf");
+}
+.main {
+  border: 1px solid saddlebrown;
+  margin: 0 auto;
+  width: 1200px;
+}
+.main__sidebar {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f8f1f1;
+  width: 20%;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 4px;
+  height: fit-content;
+}
+.main__sidebar-item {
+  /* background-color: rgb(218, 196, 200); */
+  display: flex;
+  justify-content: center;
+}
+.main__title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-top: 1rem;
+  display: flex;
+}
+.main__title-ico {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
+}
+.main__title-ico--libro {
+  background-image: url("../../assets/icons/book.svg");
+  background-size: cover;
+}
+.main__title-ico--personaje {
+  background-image: url("../../assets/icons/personaje.svg");
+  background-size: cover;
+}
+.main__content {
+  width: 80%;
+  padding: 0 1em 0 1em;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border-left-color: salmon;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .main {
+    width: 100%;
+  }
+}
+/* ESTO POSIBLEMENTE PASAR A COMPONENTES? MIRAR SI SIRVE PARA TODO EL PROYECTO*/
+.sidebtn {
+  height: 2.5rem;
+}
+.sidebtn__ico {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-image: url("../../assets/icons/add.svg");
+  background-size: cover;
+}
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border-left-color: salmon;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.login {
+  margin: 0 auto;
+  width: 20%;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  padding: 2em;
+}
+.login__msg {
+  display: none;
+  padding-bottom: 1em;
+  text-align: center;
+  color: #d33232;
+}
+
+.login-form__input {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: none;
+  background-color: #e6e6e6;
+  padding: 0.7rem;
+  margin-bottom: 1em;
+}
+.login-form__btn-ingresar {
+  margin: 0 auto;
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  font-weight: bold;
+  padding: 1em;
+  border-radius: 8px;
+  background-color: #84cf84;
+}
+
+/* OTROS, mirar donde meter */
+.btn-logres {
+  font-weight: bold;
+  color: #db6400;
+  width: 100%;
+  text-align: right;
+  display: block;
+}
+.btn-logres:hover {
+  cursor: pointer;
+}
+
+.navbar {
+  background-color: #db6400;
+  padding: 1em;
+}
+.navbar__cont {
+  margin: 0 auto;
+  width: 1200px;
+}
+.navbar__link {
+  text-decoration: none;
+  font-weight: bold;
+  color: #f8f1f1;
+  margin-right: 1em;
+}
+.navbar__link:hover {
+  color: #a3d2ca;
+}
+
+@media (max-width: 480px) {
+  .navbar__cont {
+    width: 100%;
+  }
+}
+/* Estando en carpeta view: sass --watch styles/scss:styles/css */
+#contNuevaCategoria, #contNuevaSubCategoria {
+  display: none;
+}
+
+.box-feedback {
+  display: none;
+  color: red;
+  animation: none;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes muestraFeed {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* Posiblemente esto va a general */
+.fe-invalido {
+  border: 2px solid red;
+}
+
+.book-list {
+  /* display: flex;
+   flex-wrap: wrap;
+  */
+  margin-top: 1em;
+  margin-bottom: 1em;
+  display: grid;
+  /* grid-template-columns: 25% 25% 25% 25%; */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 1em;
+}
+.book-list__card {
+  /* width: 25%; */
+  border-radius: 4px;
+  border: 1px solid #a3d2ca;
+  /* padding: 1em; */
+  overflow: hidden;
+}
+.book-list__card:hover {
+  border-color: #5eaaa8;
+}
+.book-list__book {
+  display: block;
+  text-decoration: none;
+  color: #000;
+}
+.book-list__book:hover > .book-list__card-header {
+  background-color: #5eaaa8;
+}
+.book-list__btn-delete {
+  width: 2em;
+  height: 2em;
+  background-color: transparent;
+  border: none;
+  background-image: url("../../assets/icons/delete.svg");
+  background-size: cover;
+}
+.book-list__card-header {
+  padding: 1em;
+  background-color: #a3d2ca;
+  font-weight: bold;
+  color: #141212;
+}
+.book-list__card-body {
+  padding: 1em;
+}
+.book-list__card-footer {
+  border-top: 1px solid #a3d2ca;
+  padding: 0.5em 1em;
+  height: 60px;
+}
+
+.form-addbook__input {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: none;
+  background-color: #e6e6e6;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+.form-addbook__btnadd {
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  font-weight: bold;
+  padding: 1em;
+  border-radius: 8px;
+  background-color: #84cf84;
+}
+
+/* Animaciones */
+.nueva-card {
+  animation-name: animNuevaCard;
+  animation-duration: 1s;
+  /* animation-fill-mode: forwards; */
+}
+
+@keyframes animNuevaCard {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.show-modal {
+  animation-name: animShowModal;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes animShowModal {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.hide-modal {
+  animation-name: animHideModal;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes animHideModal {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/* Responsive */
+@media (max-width: 480px) {
+  .book-list {
+    grid-template-columns: 100%;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

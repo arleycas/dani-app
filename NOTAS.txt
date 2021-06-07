@@ -1,0 +1,104 @@
+Estructura y explicación del proyecto
+
+1. Se crean las carpetas con la estructura MVC
+2. Se configura el archivo .htaccess
+3. Se crea el archivo [ app.php ] y el archvio [ server.php ] dentro de la carpte "config"
+  3.1. Dentro de app.php: Van las configuraciones generales de la app
+  3.2. server.php: Datos generales del servidor
+4. Se crea el archivo/clase [ ViewModel.php ] (todos las funciones de modelos son protected)
+5. Se crea el archivo/clase [ ViewController.php ] (todas las funciones de controladores son public)
+6. Se crea el archivo [ template.php ] en carpeta "view"
+7. Se crea el archivo [ index.php ]
+8. Se crea el archivo [ MainModel.php ]
+
+Carpeta include: Aqui va el código que se repiten en todo el programa (navbar, footer, etiquetas link, etiquetas script etc)
+Carpeta content: Aqui van las vistas del programa
+
+Aunque ya me toca ir modificandolo a mi manera porque digamos yo tengo pagina de registro 
+Quedé :payaso: (no-visto) min 5: https://www.youtube.com/watch?v=4eR6WpcgxJs&list=PLH_tVOsiVGzmn89QxjFTCE19rLSDqG03U&index=49&ab_channel=CarlosAlfaro
+
+Aquí más o menos desde el min 17 explica como usar el resto de parametros de la url $view: https://www.youtube.com/watch?v=hiOmVvtyoGg&list=PLH_tVOsiVGzmn89QxjFTCE19rLSDqG03U&index=33&ab_channel=CarlosAlfaro
+
+
+-----------
+
+Función MVC de aplicación:
+
+Modelos:
+- Todas las funciones de los modelos son protected
+- Interactuan directamente con al base de datos
+- Los datos resueltos aquí, se retornan a los controladores
+
+Controladores:
+- Es intermediario entre las vistas y los modelos (o sea, las vistas nunca van a tocar los modelos y vs)
+- Se comunican con las vistas
+- Usan info que traen de los Modelos
+- Usan info que traen de las Vistas
+
+Vistas:
+- Solo se comunican con los controladores
+
+¿Como funciona en general?
+1. Al abrir la página por primera vez, siempre nos va a mandar a index.php
+  
+2. Index lo que hace es:
+  - Traer las constantes que se usan en el programa: Como la ruta raiz de la página http://localhost/charlog-app/ y tambien el nombre del proyecto
+  - Requiere el Controllador de Vista y ejecuta la función getTemplate, que requiere/incrusta al "template.php".
+
+3. Template.php
+  Aquí está plantilla principal, en la cual se van a incrustar el resto de partes de la página
+  3.1. Siempre se inscrustan los links CSS y los script JS
+  3.2. Requiere al controlador Vista y ejecuta la función getViewController -> 
+      - Esta función mira cual es el valor de la variable "view" de la url y se la manda a getViewModel -> 
+        - Esta función mira que el valor de la variable esté en la lista blanca de "vistas" que hayan; 
+          si está: devuelve la ruta de la vista, si no está: devuelve la palabra 'login', estos valores son devueltos a getVievController ->
+          Esta devuelve al template la ruta de la vista o la palabra login
+  3.3. El template.php según el valor devuelto muestra:
+    - Si es la palabra login: La vista de login
+    - Si es la ruta de alguna otra vista: 
+      - Usa la ruta traida para mostrar esa vista
+      - Muestra el nabvar y el footer
+  
+  4. RECORDAR QUE TENEMOS URL AMIGABLES
+    - Entonces cada vez que pongamos un valor en la url, este en el fondo lo que hace es: index.php?view=<valor_variable>, por lo tanto siempre estamos es recargando la página index y
+    comenzando estre proceso desde el punto 1.
+          
+
+¿Que hacer?
+- (ok) Ponerle botones de eliminar a los libros - En proceso ya que se debe arreglar los de los signos de interrogación con eñes y tildes
+- (ok) Modificar función randomNineCode en MainModel, hacer que convierta las ñ en "n" y quitar las tildes, mejor hacer eso ya que ocurre un error al intentar acceder a ese personaje o libro
+
+CAMBIOS PARA HACER EN FUTURO (para acelerar proceso)
+- Que se pueda buscar por caracteristica de personaje
+- La función de código aleatoria dejarlo en la clase MainModel?
+- Documentar código, guiarme con este? http://www.dit.upm.es/~pepe/doc/adsw/base/doc/doc.htm
+
+
+COSAS QUE ME QUEDAN DE LECCIÓN
+- 1ro. Mirar que componentes tienen en comun todas las partes de mi página, para hacer un "componentes.scss" y reusarlos
+- Para no hacer tantas paginas, solo hacer las necesarias (y si alguna de ellas tiene pagina  de agregar, editar, etc hacerlas en forma de ventana modal o algo por el estilo)
+- Hacer una especie de framework mio tipo bootstrap para ventanas modales, botones etc?
+
+
+
+
+==================== ESTADARES DE ESTA APP ====================
+Agregar luego a mi documento de estandares?
+
+- Los input tienen como id ej: 
+    id="inpCNombrePersonaje" (referencia que este es un input de CREATE nombre personaje) 
+    id="inpUNombrePersonaje" (referencia que este es un input de UPDATE nombre personaje) 
+    etc...
+- Los atributo "name" del input tienen como valor ej:
+    name="cNombrePersonaje" (referencia que este es un name  de CREATE nombre personaje) 
+    name="uNombrePersonaje" (referencia que este es un name de UPDATE nombre personaje) 
+    etc...
+
+
+    Paleta de colores: https://colorhunt.co/palette/226355
+
+
+COSAS QUE HACEN FALTA
+
+- Botón de copiar las tareas que estén dibujadas
+- AL insertar tarea, que se reinicie el modal de insertar

@@ -1,0 +1,156 @@
+/* Estando en carpeta view: sass --watch styles/scss:styles/css */
+
+#contNuevaCategoria, #contNuevaSubCategoria{
+  display: none;
+}
+
+.box-feedback {
+  display: none;
+  color: red;
+  animation: none;
+  animation-duration: .4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes muestraFeed {
+  0%{transform: scale(0);}
+  100%{transform: scale(1);}
+}
+
+/* Posiblemente esto va a general */
+.fe-invalido {
+  border: 2px solid red;
+}
+
+.book-list {
+  /* display: flex;
+  flex-wrap: wrap;
+ */
+  margin-top: 1em;
+  margin-bottom: 1em;
+  display: grid;
+  /* grid-template-columns: 25% 25% 25% 25%; */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 1em;
+
+  &__card {
+    /* width: 25%; */
+    border-radius: 4px;
+    border: 1px solid #a3d2ca;
+    /* padding: 1em; */
+    overflow: hidden;
+
+    &:hover {
+      border-color: #5eaaa8;
+    }
+  }
+
+  &__book {
+    display: block;
+    text-decoration: none;
+    color: #000;
+
+    &:hover > .book-list__card-header{
+      background-color: #5eaaa8;
+    }
+    
+  }
+
+  &__btn-delete {
+    width: 2em;
+    height: 2em;
+    background-color: transparent;
+    border: none;
+    background-image: url("../../assets/icons/delete.svg");
+    background-size: cover;
+
+  }
+
+  &__card-header {
+    padding: 1em;
+    background-color: #a3d2ca;
+    font-weight: bold;
+    color: #141212;
+  }
+
+  &__card-body {
+    padding: 1em;
+  }
+
+  &__card-footer {
+    border-top: 1px solid #a3d2ca;
+    padding: .5em 1em;
+    height: 60px;
+  }
+}
+
+
+.form-addbook {
+
+  &__input {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: none;
+    background-color: #e6e6e6;
+    padding: 1em;
+    margin-bottom: 1em;
+  }
+
+  &__btnadd {
+
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    font-weight: bold;
+    padding: 1em;
+    border-radius: 8px;
+    background-color: #84cf84;
+  }
+}
+
+/* Animaciones */
+.nueva-card {
+  animation-name: animNuevaCard;
+  animation-duration: 1s;
+  /* animation-fill-mode: forwards; */
+}
+
+@keyframes animNuevaCard {
+  0% {transform: scale(1);}
+  50% {transform: scale(1.2);}
+  100% {transform: scale(1);}
+}
+
+.show-modal {
+  animation-name: animShowModal;
+  animation-duration: .2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes animShowModal {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+.hide-modal {
+  animation-name: animHideModal;
+  animation-duration: .2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes animHideModal {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+/* Responsive */
+
+@media (max-width: 480px) { 
+
+  .book-list {
+    grid-template-columns: 100%;
+  }
+  
+}
