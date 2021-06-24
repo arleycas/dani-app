@@ -1,11 +1,24 @@
 <!-- Esta variable se guarda en la función de Login Controller -->
 <!-- <p><b> Bienvenido/a: <?php echo $_SESSION['nombre_daniapp']?></b></p> -->
 
-<nav class="navbar">
-  <div class="navbar__cont">
-    <a class="navbar__link" href="<?php echo SERVERURL; ?>tarea/">Tareas</a>
-    <a class="navbar__link" href="<?php echo SERVERURL; ?>settings/">Settings</a>
-    <a id="btnLogout" class="navbar__link" href="#">Cerrar sesión</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="<?php echo SERVERURL; ?>tarea/"><i class="fas fa-book"></i> Tareas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo SERVERURL; ?>settings/"><i class="fas fa-cog"></i> Settings</a>
+        </li>
+        <li class="nav-item">
+          <a id="btnLogout" class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 

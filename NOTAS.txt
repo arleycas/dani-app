@@ -1,3 +1,7 @@
+NOTA IMPORTANTE: 
+Primero crear la db en web y tomar ese nombre de db para hacer pruebas locales (así me ahorro dolores de cabeza en las consultas de andar cambiando el nombre a cada nada)
+Otra forma sería concatenar la variable global DB (en app.php) a todas las sentencias sql, pero se pierden los colores de fuente del string de la consulta
+
 Estructura y explicación del proyecto
 
 1. Se crean las carpetas con la estructura MVC

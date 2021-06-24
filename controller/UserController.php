@@ -15,7 +15,7 @@
       $contrasena2 = MainModel::cleanString($_POST['cContrasena2Usuario']);
 
       /* -- Comprobar si el USUARIO existe -- */
-      $validarUsuario = MainModel::runSimpleQuery("SELECT USU_NOMBRE FROM bgu1dxovwo00mnppgke9.tbl_usuario WHERE USU_NOMBRE = '$nombre'");
+      $validarUsuario = MainModel::runSimpleQuery("SELECT USU_NOMBRE FROM indegwgj_db_daniapp.tbl_usuario WHERE USU_NOMBRE = '$nombre'");
       if($validarUsuario->rowCount() > 0) { //Verifica si existe un registro con esa consulta
         //Ya existe usuario
         return json_encode(['res' => 'yaExisteUs']);
@@ -28,7 +28,7 @@
       /* -- Comprobar email -- */
       if($correo != '' ) {
         if(filter_var($correo, FILTER_VALIDATE_EMAIL)) { //Funcion de php para validar emails?
-          $validarCorreo = MainModel::runSimpleQuery("SELECT USU_CORREO FROM bgu1dxovwo00mnppgke9.tbl_usuario WHERE USU_CORREO = '$correo'");
+          $validarCorreo = MainModel::runSimpleQuery("SELECT USU_CORREO FROM indegwgj_db_daniapp.tbl_usuario WHERE USU_CORREO = '$correo'");
 
           if($validarCorreo->rowCount() > 0) {
             //Email repetido

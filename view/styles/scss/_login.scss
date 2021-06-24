@@ -15,11 +15,10 @@
 
 
 .login {
-  margin: 0 auto;
-  width: 20%;
   box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
   border-radius: 8px;
   padding: 2em;
+  margin: 1rem;
 
   &__msg {
     display: none;

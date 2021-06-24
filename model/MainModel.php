@@ -2,10 +2,10 @@
 /* Está variable está en el archivo template.php */
   if($ajaxRequest) {
     //Cuando es una petición Ajax, quiere decir que el archivo que está intentando incluir el archivo está dentro de la carpeta Ajax
-    require_once '../config/server.php';
+    require_once '../config/app.php';
   }else {
     //Cuando no es una petición Ajax quiere decir que estamos intentando incluir este archivo desde index.php
-    require_once './config/server.php';
+    require_once './config/app.php';
   }
 
   /* Esta clase contiene todas las funciones que vamos a usar en todo el sistemsa: conexion BBDD, evitar inyecciones sql, paginadores etc */

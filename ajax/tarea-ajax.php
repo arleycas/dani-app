@@ -36,6 +36,10 @@
       if(isset($_POST['rCantidadTareas'])) {
         echo $insTarea->obtenerCantidadTareas();
       }
+
+      if(isset($_POST['rGeneraPDF'])) {
+        echo $insTarea->generarPDFController();
+      }
       
     }
 

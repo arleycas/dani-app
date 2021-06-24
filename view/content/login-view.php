@@ -1,38 +1,43 @@
 <h1>Usuario: dani / dani123 </h1>
 
-<div class="login">
-  <div class="login__msg"></div>
+<div class="row justify-content-center">
 
-  <span id="btnToggleLogin" class="btn-logres">Registrarme</span>
+  <div class="col-sm-7 col-md-8 col-lg-4 col-xl-3">
+    <div class="login">
+      <div class="login__msg"></div>
 
-  <div class="cont-login" style="display: block;">
+        <span id="btnToggleLogin" class="btn-logres">Registrarme</span>
 
-    <form class="form-rusuario" action="<?php echo SERVERURL; ?>ajax/login-ajax.php" data-form="read" method="POST" autocomplete="off">
+        <div class="cont-login" style="display: block;">
 
-      <input id="inpUsuario" class="login-form__input" placeholder="Usuario" type="text" name="rNombreUsuario">
-      <input id="inpContrasena" class="login-form__input" placeholder="Contraseña" type="password" name="rContrasenaUsuario">
+          <form class="form-rusuario" action="<?php echo SERVERURL; ?>ajax/login-ajax.php" data-form="read" method="POST" autocomplete="off">
 
-      <button id="btnIniciarSesion" class="login-form__btn-ingresar" type="submit">Ingresar</button>
+            <input id="inpUsuario" class="login-form__input" placeholder="Usuario" type="text" name="rNombreUsuario">
+            <input id="inpContrasena" class="login-form__input" placeholder="Contraseña" type="password" name="rContrasenaUsuario">
 
-    </form>
-  
+            <button id="btnIniciarSesion" class="login-form__btn-ingresar" type="submit">Ingresar</button>
+
+          </form>
+        
+        </div>
+
+        <div class="cont-registro" style="display: none;">
+
+          <form class ="form-cusuario" action="<?php echo SERVERURL; ?>ajax/user-ajax.php" method="POST" data-form="create" autocomplete="off">
+
+            <input id="inpCUsuario" class="inp-text" placeholder="Nombre de usuario" type="text" name="cNombreUsuario">
+            <input id="inpCCorreo" class="inp-text" placeholder="Correo" type="text" name="cCorreoUsuario">
+            <input id="inpCContrasena1" class="inp-text" placeholder="Contraseña" type="password" name="cContrasena1Usuario">
+            <input id="inpCContrasena2" class="inp-text" placeholder="Repita contraseña" type="password" name="cContrasena2Usuario">
+
+            <button type="submit" class="btn-form form-cusuario__btnc">Registrar</button>
+
+          </form>
+        
+        </div>
+
+    </div>
   </div>
-
-  <div class="cont-registro" style="display: none;">
-
-    <form class ="form-cusuario" action="<?php echo SERVERURL; ?>ajax/user-ajax.php" method="POST" data-form="create" autocomplete="off">
-
-      <input id="inpCUsuario" class="inp-text" placeholder="Nombre de usuario" type="text" name="cNombreUsuario">
-      <input id="inpCCorreo" class="inp-text" placeholder="Correo" type="text" name="cCorreoUsuario">
-      <input id="inpCContrasena1" class="inp-text" placeholder="Contraseña" type="password" name="cContrasena1Usuario">
-      <input id="inpCContrasena2" class="inp-text" placeholder="Repita contraseña" type="password" name="cContrasena2Usuario">
-
-      <button type="submit" class="btn-form form-cusuario__btnc">Registrar</button>
-
-    </form>
-  
-  </div>
-
 </div>
 
 <script>

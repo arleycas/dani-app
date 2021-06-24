@@ -5,6 +5,11 @@
     require_once './model/TareaModel.php'; //Si entra acá queire decir que se está ejecutando desde index.php
   }
 
+  require_once '../lib/vendor/autoload.php';
+
+  use PhpOffice\PhpSpreadsheet\Spreadsheet;
+  use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
   class TareaController extends TareaModel {
 
     /* ---------- Controlador nueva tarea [return: json] ---------- */
@@ -131,7 +136,7 @@
         $listaSubCategorias = '';
 
         //Lista Categorias
-        $PDOSelCategorias = MainModel::runSimpleQuery("SELECT PKCAT_ID, CAT_NOMBRE FROM bgu1dxovwo00mnppgke9.tbl_categoria ORDER BY CAT_NOMBRE");
+        $PDOSelCategorias = MainModel::runSimpleQuery("SELECT PKCAT_ID, CAT_NOMBRE FROM indegwgj_db_daniapp.tbl_categoria ORDER BY CAT_NOMBRE");
         if($PDOSelCategorias->rowCount() > 0) {
           $arrCategorias = $PDOSelCategorias->fetchAll();
 
@@ -145,7 +150,7 @@
         }
 
         //Lista SubCategorias
-        $PDOSelSubCategorias = MainModel::runSimpleQuery("SELECT PKSUB_ID, SUB_NOMBRE FROM bgu1dxovwo00mnppgke9.tbl_subcategoria ORDER BY SUB_NOMBRE");
+        $PDOSelSubCategorias = MainModel::runSimpleQuery("SELECT PKSUB_ID, SUB_NOMBRE FROM indegwgj_db_daniapp.tbl_subcategoria ORDER BY SUB_NOMBRE");
         if($PDOSelSubCategorias->rowCount() > 0) { 
           $arrSubCategorias = $PDOSelSubCategorias->fetchAll();
           for ($i=0; $i < count($arrSubCategorias); $i++) { 
@@ -166,7 +171,7 @@
       $listaSubcategorias = '';
 
       //Lista SubCategorias
-      $PDOSelSubCategorias = MainModel::runSimpleQuery("SELECT PKSUB_ID, SUB_NOMBRE FROM bgu1dxovwo00mnppgke9.tbl_subcategoria WHERE FKCAT_ID = '$FKCAT_ID' ORDER BY SUB_NOMBRE");
+      $PDOSelSubCategorias = MainModel::runSimpleQuery("SELECT PKSUB_ID, SUB_NOMBRE FROM indegwgj_db_daniapp.tbl_subcategoria WHERE FKCAT_ID = '$FKCAT_ID' ORDER BY SUB_NOMBRE");
       if($PDOSelSubCategorias == true) {
         $CantResultados = $PDOSelSubCategorias->rowCount();
 
@@ -201,7 +206,7 @@
       $cantTareasHoy = 0; $cantTareasMes = 0; $cantTareasAgno = 0;
 
       //Cantidad tareas de hoy
-      $PDOTarea = MainModel::runSimpleQuery("SELECT COUNT(PKTAR_ID) AS CANT_HOY FROM bgu1dxovwo00mnppgke9.tbl_tarea WHERE FKUSU_ID = '$usu_id' AND TAR_FECHA BETWEEN '$hoy 00:00:00' AND '$hoy 23:59:59'");
+      $PDOTarea = MainModel::runSimpleQuery("SELECT COUNT(PKTAR_ID) AS CANT_HOY FROM indegwgj_db_daniapp.tbl_tarea WHERE FKUSU_ID = '$usu_id' AND TAR_FECHA BETWEEN '$hoy 00:00:00' AND '$hoy 23:59:59'");
       if($PDOTarea == true) {
         $CantResultados = $PDOTarea->rowCount();
 
@@ -221,7 +226,7 @@
       }
 
       //Cantidad tareas del mes
-      $PDOTarea = MainModel::runSimpleQuery("SELECT COUNT(PKTAR_ID) AS CANT_MES FROM bgu1dxovwo00mnppgke9.tbl_tarea WHERE FKUSU_ID = '$usu_id' AND TAR_FECHA BETWEEN '$mes-1 00:00:00' AND '$mes-31 23:59:59'");
+      $PDOTarea = MainModel::runSimpleQuery("SELECT COUNT(PKTAR_ID) AS CANT_MES FROM indegwgj_db_daniapp.tbl_tarea WHERE FKUSU_ID = '$usu_id' AND TAR_FECHA BETWEEN '$mes-1 00:00:00' AND '$mes-31 23:59:59'");
       if($PDOTarea == true) {
         $CantResultados = $PDOTarea->rowCount();
 
@@ -241,7 +246,7 @@
       }
 
       //Cantidad tareas totales del año
-      $PDOTarea = MainModel::runSimpleQuery("SELECT COUNT(PKTAR_ID) AS CANT_TOTALES FROM bgu1dxovwo00mnppgke9.tbl_tarea WHERE FKUSU_ID = '$usu_id' AND TAR_FECHA BETWEEN '$agno-1-1 00:00:00' AND '$agno-12-31 23:59:59'");
+      $PDOTarea = MainModel::runSimpleQuery("SELECT COUNT(PKTAR_ID) AS CANT_TOTALES FROM indegwgj_db_daniapp.tbl_tarea WHERE FKUSU_ID = '$usu_id' AND TAR_FECHA BETWEEN '$agno-1-1 00:00:00' AND '$agno-12-31 23:59:59'");
       if($PDOTarea == true) {
         $CantResultados = $PDOTarea->rowCount();
 
@@ -271,9 +276,9 @@
       $usu_id = $_SESSION['id_daniapp'];
 
       //Todas las tareas
-      $sQuery = "SELECT tt.PKTAR_ID, tt.TAR_DESCRIPCION, tt.TAR_FECHA, tc.CAT_NOMBRE, ts.SUB_NOMBRE FROM bgu1dxovwo00mnppgke9.tbl_tarea AS tt
-      JOIN bgu1dxovwo00mnppgke9.tbl_subcategoria AS ts ON tt.FKSUB_ID = ts.PKSUB_ID
-      JOIN bgu1dxovwo00mnppgke9.tbl_categoria AS tc ON ts.FKCAT_ID = tc.PKCAT_ID
+      $sQuery = "SELECT tt.PKTAR_ID, tt.TAR_DESCRIPCION, tt.TAR_FECHA, tc.CAT_NOMBRE, ts.SUB_NOMBRE FROM indegwgj_db_daniapp.tbl_tarea AS tt
+      JOIN indegwgj_db_daniapp.tbl_subcategoria AS ts ON tt.FKSUB_ID = ts.PKSUB_ID
+      JOIN indegwgj_db_daniapp.tbl_categoria AS tc ON ts.FKCAT_ID = tc.PKCAT_ID
       WHERE tt.FKUSU_ID = '$usu_id'";
 
       //Consulta solo por categoría
@@ -382,10 +387,10 @@
 
         $contenido .= '
           <div class="col-sm-12 col-lg-6" style="margin-bottom: 1rem">
-            <div class="card">
+            <div class="card card-tarea">
               <div class="card-body">
-                <p class="card-text">' . $arrDatos[$i]['TAR_DESCRIPCION'] . '</p>
-                <p> <strong>' . $arrDatos[$i]['CAT_NOMBRE'] . ' » </strong><span class="text-muted">' . $arrDatos[$i]['SUB_NOMBRE'] . '</span> </p>
+                <p class="card-text card-descripcion">' . $arrDatos[$i]['TAR_DESCRIPCION'] . '</p>
+                <p> <strong class="card-cat">' . $arrDatos[$i]['CAT_NOMBRE'] . ' » </strong><span class="text-muted card-subcat">' . $arrDatos[$i]['SUB_NOMBRE'] . '</span> </p>
                 <h6 class="card-subtitle mb-2 text-muted text-end">' . $arrDatos[$i]['TAR_FECHA'] . ' </h6>
 
                 <a href="#" id="btnIdEliTarea' . $arrDatos[$i]['PKTAR_ID'] . '" class="btn btn-primary btn-swal-dtarea"><i class="fas fa-trash-alt"></i></a>
@@ -401,7 +406,7 @@
     /* ---------- Controlador para obtener la categoría en caso que sea "Nueva categoría" [return: string] ---------- */
     public static function filtrarCategoriaController($nuevaCategoria) {
       //Verificar si la categoría escrita en el input ya existe en la base
-      $PDOTarea = MainModel::runSimpleQuery("SELECT PKCAT_ID FROM bgu1dxovwo00mnppgke9.tbl_categoria WHERE CAT_NOMBRE = '$nuevaCategoria'");
+      $PDOTarea = MainModel::runSimpleQuery("SELECT PKCAT_ID FROM indegwgj_db_daniapp.tbl_categoria WHERE CAT_NOMBRE = '$nuevaCategoria'");
       if($PDOTarea == true) {
         $CantResultados = $PDOTarea->rowCount();
 
@@ -413,7 +418,7 @@
           $arrResultado = []; //Vaciarlo
         }else if($CantResultados < 1) {
           //La categoría no existe, crearla
-          $PDOTarea = MainModel::runSimpleQuery("INSERT INTO bgu1dxovwo00mnppgke9.tbl_categoria (CAT_NOMBRE) VALUES ('$nuevaCategoria')");
+          $PDOTarea = MainModel::runSimpleQuery("INSERT INTO indegwgj_db_daniapp.tbl_categoria (CAT_NOMBRE) VALUES ('$nuevaCategoria')");
           if($PDOTarea == true) {
             $CantResultados = $PDOTarea->rowCount();
 
@@ -421,7 +426,7 @@
               $PDOTarea = null;
 
               //Bajar la PK de la nueva categoría
-              $PDOTarea = MainModel::runSimpleQuery("SELECT PKCAT_ID FROM bgu1dxovwo00mnppgke9.tbl_categoria WHERE CAT_NOMBRE = '$nuevaCategoria'");
+              $PDOTarea = MainModel::runSimpleQuery("SELECT PKCAT_ID FROM indegwgj_db_daniapp.tbl_categoria WHERE CAT_NOMBRE = '$nuevaCategoria'");
               if($PDOTarea == true) {
                 $CantResultados = $PDOTarea->rowCount();
 
@@ -451,7 +456,7 @@
     /* ---------- Controlador para obtener la subcategoría en caso que sea "Nueva subcategoría" [return: string] ---------- */
     public static function filtrarSubcategoriaController($categoria, $nuevaSubcategoria) {
       //Verificar si la sub categoria escrita en el input ya existe en la base
-      $PDOTarea = MainModel::runSimpleQuery("SELECT PKSUB_ID FROM bgu1dxovwo00mnppgke9.tbl_subcategoria WHERE SUB_NOMBRE = '$nuevaSubcategoria' AND FKCAT_ID = '$categoria'"); //Obj PDOStatement
+      $PDOTarea = MainModel::runSimpleQuery("SELECT PKSUB_ID FROM indegwgj_db_daniapp.tbl_subcategoria WHERE SUB_NOMBRE = '$nuevaSubcategoria' AND FKCAT_ID = '$categoria'"); //Obj PDOStatement
       if($PDOTarea == true) {
         $CantResultados = $PDOTarea->rowCount();
 
@@ -463,7 +468,7 @@
           $arrResultado = []; //Vaciarlo
         }else if($CantResultados < 1) {
           //La subcategoría no existe, crearla
-          $PDOTarea = MainModel::runSimpleQuery("INSERT INTO bgu1dxovwo00mnppgke9.tbl_subcategoria (FKCAT_ID, SUB_NOMBRE) VALUES ('$categoria', '$nuevaSubcategoria')");
+          $PDOTarea = MainModel::runSimpleQuery("INSERT INTO indegwgj_db_daniapp.tbl_subcategoria (FKCAT_ID, SUB_NOMBRE) VALUES ('$categoria', '$nuevaSubcategoria')");
           if($PDOTarea == true) {
             $CantResultados = $PDOTarea->rowCount();
 
@@ -471,7 +476,7 @@
               $PDOTarea = null;
 
               //Bajar la PK de la nueva subcategoría
-              $PDOTarea = MainModel::runSimpleQuery("SELECT PKSUB_ID FROM bgu1dxovwo00mnppgke9.tbl_subcategoria WHERE FKCAT_ID = '$categoria' AND SUB_NOMBRE = '$nuevaSubcategoria'");
+              $PDOTarea = MainModel::runSimpleQuery("SELECT PKSUB_ID FROM indegwgj_db_daniapp.tbl_subcategoria WHERE FKCAT_ID = '$categoria' AND SUB_NOMBRE = '$nuevaSubcategoria'");
               if($PDOTarea == true) {
                 $CantResultados = $PDOTarea->rowCount();
 
@@ -520,6 +525,71 @@
         $PDOTarea = null; //Cierra la conexión
         exit;
       }
+    }
+
+    public function generarPDFController() {
+
+      session_start(['name'=>'daniapp']);
+      $usu_id = $_SESSION['id_daniapp'];
+
+      //Todas las tareas
+      $sQuery = "SELECT tt.PKTAR_ID, tt.TAR_DESCRIPCION, tt.TAR_FECHA, tc.CAT_NOMBRE, ts.SUB_NOMBRE FROM indegwgj_db_daniapp.tbl_tarea AS tt
+      JOIN indegwgj_db_daniapp.tbl_subcategoria AS ts ON tt.FKSUB_ID = ts.PKSUB_ID
+      JOIN indegwgj_db_daniapp.tbl_categoria AS tc ON ts.FKCAT_ID = tc.PKCAT_ID
+      WHERE tt.FKUSU_ID = '$usu_id'";
+
+      $PDOTarea = MainModel::runSimpleQuery($sQuery);
+
+      if($PDOTarea == true) {
+        $CantResultados = $PDOTarea->rowCount();
+
+        if($CantResultados > 0) {
+
+          $arrDatos = $PDOTarea->fetchAll();
+
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'CATEGORÍA');
+          $sheet->setCellValue('B1', 'SUBCATEGORÍA');
+          $sheet->setCellValue('C1', 'DESCRIPCIÓN');
+          $sheet->setCellValue('D1', 'FECHA');
+
+          $j = 2; //Para comenzar poner los datos en la segunda fila
+
+          for ($i=0; $i < count($arrDatos) ; $i++) {
+            $sheet->setCellValue('A'.$j, $arrDatos[$i]['CAT_NOMBRE']);
+            $sheet->setCellValue('B'.$j, $arrDatos[$i]['SUB_NOMBRE']);
+            $sheet->setCellValue('C'.$j, $arrDatos[$i]['TAR_DESCRIPCION']);
+            $sheet->setCellValue('D'.$j, $arrDatos[$i]['TAR_FECHA']);
+            $j++;
+          }
+
+          $writer = new Xlsx($spreadsheet);
+
+          try {
+            $writer->save('../InformeTareas.xlsx'); //Se guarda en la raíz del proyecto
+
+            return json_encode(['res' => 'ok']);
+            $PDOTarea = null; //Cierra la conexión
+            exit;
+          }catch(Exception $e) {
+            return json_encode(['res' => 'fail', 'error' => $e->getMessage()]);
+            $PDOTarea = null; //Cierra la conexión
+            exit;
+          }
+
+        }else if($CantResultados < 1) {
+          return json_encode(['res' => 'nadaOk', 'queryString' => $PDOTarea->queryString, 'lugar' => 'archivo '.  __FILE__ . ' ~ linea ' . __LINE__]);
+          $PDOTarea = null; //Cierra la conexión
+          exit;
+        }
+      }else {
+        return json_encode(['res' => 'fail', 'error' => $PDOTarea->errorInfo(), 'queryString' => $PDOTarea->queryString, 'lugar' => 'archivo '.  __FILE__ . ' ~ linea ' . __LINE__]);
+        $PDOTarea = null; //Cierra la conexión
+        exit;
+      }
+
+
     }
 
   }
