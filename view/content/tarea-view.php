@@ -10,21 +10,33 @@
   }
 </style>
 <!-- ========== CONTENEDOR MAIN ========== -->
-<div class="main">  
+<div class="main container">  
 
-<h1>Nana App</h1>
+  <div class="opciones rounded my-4">
 
-  <!-- ========== Filtro para Lisa de tareas ==========  -->
+    <div class="container">
+      <div class="row justify-content-md-center">
+  
+        <div class="col col-lg-2 m-3 d-flex justify-content-center">
+          <!-- Button trigger modal Agregar tarea -->
+          <a class="btn btn-primary py-2 px-4 fs-4 me-2" data-bs-toggle="modal" data-bs-target="#modalCTarea"><i class="fas fa-plus-square"></i> Tarea</a>
+        </div>
+        
+        <div class="col col-lg-2 m-3 d-flex justify-content-center">
+          <a id="btnCopiarTareas" class="btn btn-primary py-2 px-4 fs-4"><i class="fas fa-file-excel"></i> Informe </a>
+        </div>
+        
+        <div class="col col-lg-2 m-3 d-flex justify-content-center">
+          <a id="btnToggleFiltro" class="btn btn-toggle-filtro py-2 px-4 fs-4 text-white"> Filtro  <i class="fas fa-filter"></i> <i id="btnIcoAcordeonFiltro" class="fas fa-chevron-down"></i> </a>
+        </div>
+      </div>
+    </div>
 
-  <div class="card">
-    <div class="card-header">
+
+    <div class="acordeon-filtro" data-estado="colapsado" style="display: none;">
 
       <!-- Toggles para filtro -->
       <div class="row">
-      
-        <div class="col">
-          <h3> <i class="fas fa-filter"></i> Filtro</h3>
-        </div>
 
         <div class="col">
           <div class="form-check form-switch">
@@ -42,11 +54,6 @@
 
       </div>
 
-
-    </div>
-
-    <div class="card-body">
-
       <!-- Select de filtros de categoría y subcategoria -->
       <div id="contFiltros" class="row" style="display: none;">
 
@@ -55,7 +62,7 @@
           <select id="selCategoriaFiltro" class="form-select" aria-label="Default select example">
             <option value="" selected="" disabled="">Elije Categoría...</option>>
           </select>
-        </div>
+        </div>  
 
         <div id="contFiltroSubcate" class="col-4" style="display: none;">
           <label for="selSubcategoriaFiltro">Subcategorias </label>
@@ -65,34 +72,31 @@
               <option value="" selected="" disabled="">Elije Subcategoría...</option>
             </select>
           </div>
-        </div>
+        </div>  
 
       </div> 
 
       <!-- Filtro de fecha -->
       <div id="contFiltroFecha" class="row" style="display: none;">
 
-        <div class="col-4">
-          <label for="inpFechaInicioFiltro">Fecha inicio </label>
-          <input id="inpFechaInicioFiltro" type="date" class="form-control" name="cFechaTarea" value="<?php echo date('Y-m-d');?>">
-          <div class="box-feedback" data-elemForm="#inpFechaInicioFiltro"><i class="fas fa-exclamation-circle me-1"></i>No olvides la fecha!</div>
-        </div>
-
-        <div class="col-4">
-          <label for="inpFechaFinFiltro">Fecha fin </label>
-          <input id="inpFechaFinFiltro" type="date" class="form-control" name="cFechaTarea" value="<?php echo date('Y-m-d');?>">
-          <div class="box-feedback" data-elemForm="#inpFechaFinFiltro"><i class="fas fa-exclamation-circle me-1"></i>No olvides la fecha!</div>
-        </div>
+      <div class="col-4">
+        <label for="inpFechaInicioFiltro">Fecha inicio </label>
+        <input id="inpFechaInicioFiltro" type="date" class="form-control" name="cFechaTarea" value="<?php echo date('Y-m-d');?>">
+        <div class="box-feedback" data-elemForm="#inpFechaInicioFiltro"><i class="fas fa-exclamation-circle me-1"></i>No olvides la fecha!</div>
       </div>
 
-      <a id="btnFiltrarTareas" class="btn btn-primary"><i class="fas fa-filter"></i> Filtrar</a>
+      <div class="col-4">
+        <label for="inpFechaFinFiltro">Fecha fin </label>
+        <input id="inpFechaFinFiltro" type="date" class="form-control" name="cFechaTarea" value="<?php echo date('Y-m-d');?>">
+        <div class="box-feedback" data-elemForm="#inpFechaFinFiltro"><i class="fas fa-exclamation-circle me-1"></i>No olvides la fecha!</div>
+      </div>
+      </div>
 
-      <a id="btnCopiarTareas" class="btn btn-primary"><i class="fas fa-file-excel"></i> Informe </a>
+      <a id="btnFiltrarTareas" class="btn btn-primary m-3"><i class="fas fa-filter"></i> Filtrar</a>
 
     </div>
 
   </div>
-
 
 
   <!-- ========== Lisa de tareas ==========  -->
@@ -103,11 +107,9 @@
   <h2>Tareas hechas hoy <span id="cantTareasHoy">0</span> </h2>
   <h2>Tareas hechas este mes <span id="cantTareasMes">0</span> </h2>
   <h2>Total tareas del año <span id="cantTareasAgno">0</span> </h2>
+  <?php echo $_GET['view']; ?>
 
   <!-- ========== MODALES ==========  -->
-
-  <!-- Button trigger modal Agregar tarea -->
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCTarea">Agrega tarea</button>
 
   <!-- Modal Agregar tarea-->
   <div class="modal fade" id="modalCTarea" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -368,6 +370,9 @@
     //boton copiar tareas
     //document.querySelector('#btnCopiarTareas').addEventListener('click', copiarTareas);
     document.querySelector('#btnCopiarTareas').addEventListener('click', generarExcel);
+
+    //toggle abrir/cerrar acordeon filtro
+    document.querySelector('#btnToggleFiltro').addEventListener('click', toggleAcordeonFiltro)
     
   }, false); //Fin carga inicial
 
@@ -478,7 +483,7 @@
             let modalCTarea = bootstrap.Modal.getInstance(document.getElementById('modalCTarea'));
             modalCTarea.hide();
 
-            Swal.fire('Tarea insertada!');
+            Swal.fire({text: 'Tarea insertada!', icon: 'success'});
             //document.querySelector('.form-cpersonaje__btnc').innerHTML = 'Agregar';
             //document.querySelector('#' + phpJsonRes.idCard).classList.add('nueva-card'); //Animación apenas se crea!
           }else {
@@ -955,6 +960,23 @@
       }); //Fin promesa
   }
 
-</script>
+  function toggleAcordeonFiltro() {
+    let acordeon = document.querySelector('.acordeon-filtro'); 
+    let estado = acordeon.getAttribute('data-estado');
+    let btnIco = document.querySelector('#btnIcoAcordeonFiltro');
 
+    if(estado == 'colapsado') {
+      acordeon.style.display = 'block';
+      acordeon.setAttribute('data-estado', '');
+      btnIco.classList.remove('fa-chevron-down');
+      btnIco.classList.add('fa-chevron-up');
+    }else {
+      acordeon.style.display = 'none';
+      acordeon.setAttribute('data-estado', 'colapsado');
+      btnIco.classList.remove('fa-chevron-up');
+      btnIco.classList.add('fa-chevron-down');
+    }
+  }
+
+</script>
 

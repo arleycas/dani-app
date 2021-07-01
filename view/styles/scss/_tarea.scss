@@ -3,6 +3,39 @@
 #contNuevaCategoria, #contNuevaSubCategoria{
   display: none;
 }
+.opciones {
+  background-color: #0000004f;
+}
+
+.card-tarea {
+  background-color: #f1f1f1eb;
+  border: none;
+}
+
+.card-cat {
+  background-color: #7b81c4;
+  color: #444444;
+  padding: .2rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.card-subcat {
+  background-color: #66c97f;
+  color: #444444;
+  padding: .2rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.btn-toggle-filtro {
+  font-weight: bold;
+  &:hover {
+    color: #c3b4db !important;
+  }
+}
 
 .box-feedback {
   display: none;

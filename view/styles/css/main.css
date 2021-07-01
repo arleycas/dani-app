@@ -1,62 +1,29 @@
 /* Estando en carpeta view: sass --watch styles/scss:styles/css */
-/* Estando en carpeta view: sass --watch styles/scss:styles/css */
 body, input {
-  font-family: Work Sans;
+  font-family: Handlee;
+  font-size: 1.4rem;
+}
+
+/* Estando en carpeta view: sass --watch styles/scss:styles/css */
+body {
+  background-image: url("../../assets/img/wp01.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  backdrop-filter: blur(2px);
 }
 
 *::selection {
-  background-color: #db6400;
-  color: #fff;
+  background-color: #d2b6ff;
 }
 
 @font-face {
-  font-family: "Work Sans";
-  src: url("../../assets/fonts/WorkSans.ttf");
+  /* font-family: 'Work Sans'; */
+  /* font-family: 'IndieFlower'; */
+  font-family: "Handlee";
+  /* src: url("../../assets/fonts/IndieFlower.ttf"); */
+  src: url("../../assets/fonts/Handlee.ttf");
+  /* src: url("../../assets/fonts/WorkSans.ttf"); */
 }
-.main {
-  border: 1px solid saddlebrown;
-  margin: 0 auto;
-  width: 1200px;
-}
-.main__sidebar {
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: #f8f1f1;
-  width: 20%;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 4px;
-  height: fit-content;
-}
-.main__sidebar-item {
-  /* background-color: rgb(218, 196, 200); */
-  display: flex;
-  justify-content: center;
-}
-.main__title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding-top: 1rem;
-  display: flex;
-}
-.main__title-ico {
-  display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
-  margin-right: 0.5rem;
-}
-.main__title-ico--libro {
-  background-image: url("../../assets/icons/book.svg");
-  background-size: cover;
-}
-.main__title-ico--personaje {
-  background-image: url("../../assets/icons/personaje.svg");
-  background-size: cover;
-}
-.main__content {
-  width: 80%;
-  padding: 0 1em 0 1em;
-}
-
 .spinner {
   border: 4px solid rgba(0, 0, 0, 0.1);
   width: 1em;
@@ -67,23 +34,27 @@ body, input {
   display: inline-block;
 }
 
-/* Responsive */
-@media (max-width: 480px) {
-  .main {
-    width: 100%;
-  }
+/* Sobre escrito */
+.btn-primary {
+  background-color: #956fd3;
+  color: #fff;
+  border: none;
 }
-/* ESTO POSIBLEMENTE PASAR A COMPONENTES? MIRAR SI SIRVE PARA TODO EL PROYECTO*/
-.sidebtn {
-  height: 2.5rem;
+.btn-primary:hover {
+  background-color: #ae8ae9;
+  color: #fff;
 }
-.sidebtn__ico {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  background-image: url("../../assets/icons/add.svg");
-  background-size: cover;
+
+.btn-secondary {
+  background-color: #ff953e;
+  color: #fff;
+  border: none;
 }
+.btn-secondary:hover {
+  background-color: #ffc75f;
+  color: #fff;
+}
+
 .spinner {
   border: 4px solid rgba(0, 0, 0, 0.1);
   width: 1em;
@@ -149,12 +120,55 @@ body, input {
 }
 
 .nav-link.active {
-  color: #db6400 !important;
+  color: #845EC2 !important;
+  font-weight: bold;
+  /* color: #db6400 !important; */
+}
+
+/* .navbar {
+  background-color: #fd92a4;
+} */
+.nav-link {
+  color: #fff !important;
 }
 
 /* Estando en carpeta view: sass --watch styles/scss:styles/css */
 #contNuevaCategoria, #contNuevaSubCategoria {
   display: none;
+}
+
+.opciones {
+  background-color: #0000004f;
+}
+
+.card-tarea {
+  background-color: #f1f1f1eb;
+  border: none;
+}
+
+.card-cat {
+  background-color: #7b81c4;
+  color: #444444;
+  padding: 0.2rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.card-subcat {
+  background-color: #66c97f;
+  color: #444444;
+  padding: 0.2rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.btn-toggle-filtro {
+  font-weight: bold;
+}
+.btn-toggle-filtro:hover {
+  color: #c3b4db !important;
 }
 
 .box-feedback {
@@ -301,6 +315,12 @@ body, input {
   .book-list {
     grid-template-columns: 100%;
   }
+}
+.foot-daniapp {
+  text-align: center;
+  color: #fff;
+  background-color: #0000004f;
+  padding: 0.5rem;
 }
 
 /*# sourceMappingURL=main.css.map */

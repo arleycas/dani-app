@@ -9,6 +9,7 @@
 
   use PhpOffice\PhpSpreadsheet\Spreadsheet;
   use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+  use PhpOffice\PhpSpreadsheet\Style\Fill;
 
   class TareaController extends TareaModel {
 
@@ -385,16 +386,23 @@
 
       for ($i=0; $i < count($arrDatos) ; $i++) { 
 
+        $fechaHora = $arrDatos[$i]['TAR_FECHA'];
+        $fecha = explode(' ', $fechaHora);
+
         $contenido .= '
           <div class="col-sm-12 col-lg-6" style="margin-bottom: 1rem">
             <div class="card card-tarea">
               <div class="card-body">
                 <p class="card-text card-descripcion">' . $arrDatos[$i]['TAR_DESCRIPCION'] . '</p>
-                <p> <strong class="card-cat">' . $arrDatos[$i]['CAT_NOMBRE'] . ' » </strong><span class="text-muted card-subcat">' . $arrDatos[$i]['SUB_NOMBRE'] . '</span> </p>
-                <h6 class="card-subtitle mb-2 text-muted text-end">' . $arrDatos[$i]['TAR_FECHA'] . ' </h6>
 
-                <a href="#" id="btnIdEliTarea' . $arrDatos[$i]['PKTAR_ID'] . '" class="btn btn-primary btn-swal-dtarea"><i class="fas fa-trash-alt"></i></a>
-                <a href="#" class="btn btn-primary btn-utarea" data-id-utarea="' . $arrDatos[$i]['PKTAR_ID'] . '" data-bs-toggle="modal" data-bs-target="#modalUTarea"><i class="fas fa-edit"></i></a>
+                <div class="d-flex">
+                  <div class="card-cat px-2 me-2">' . $arrDatos[$i]['CAT_NOMBRE'] . '</div>
+                  <div class="card-subcat px-2">' . $arrDatos[$i]['SUB_NOMBRE'] . '</div>
+                </div>
+                  
+                  <h6 class="mb-2 text-end">' . $fecha[0] . ' </h6>
+                <a href="#" id="btnIdEliTarea' . $arrDatos[$i]['PKTAR_ID'] . '" class="btn btn-secondary btn-swal-dtarea"><i class="fas fa-trash-alt"></i></a>
+                <a href="#" class="btn btn-secondary btn-utarea" data-id-utarea="' . $arrDatos[$i]['PKTAR_ID'] . '" data-bs-toggle="modal" data-bs-target="#modalUTarea"><i class="fas fa-edit"></i></a>
               </div>
             </div>
           </div>'; 
@@ -549,6 +557,7 @@
 
           $spreadsheet = new Spreadsheet();
           $sheet = $spreadsheet->getActiveSheet();
+
           $sheet->setCellValue('A1', 'CATEGORÍA');
           $sheet->setCellValue('B1', 'SUBCATEGORÍA');
           $sheet->setCellValue('C1', 'DESCRIPCIÓN');
@@ -563,6 +572,16 @@
             $sheet->setCellValue('D'.$j, $arrDatos[$i]['TAR_FECHA']);
             $j++;
           }
+
+          //Estilos para la primera fila
+          //1. Creación de los estilos
+          $styleArrayFirstRow = [
+            'font' => ['bold' => true], 
+            'fill' => ['fillType' => Fill::FILL_SOLID, 'startColor' => [ 'argb' => 'FFBCdDF5']]];
+          //2. Obtener la ultima columna ocupada
+          $highestColumn = $sheet->getHighestColumn();
+          //3. Poner la primer columna en bold
+          $sheet->getStyle('A1:' . $highestColumn . '1' )->applyFromArray($styleArrayFirstRow);
 
           $writer = new Xlsx($spreadsheet);
 
