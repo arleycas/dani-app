@@ -16,7 +16,7 @@
 
   /* -------------------- CREDENCIALES PARA DB -------------------- */
 
-  /* 
+   /*
   //Credenciales online
   const SERVERDB = 'localhost'; //server270.web-hosting.com (para conectarme remotamente a la db)
   const DB = 'indegwgj_db_daniapp';
@@ -24,6 +24,7 @@
   const PASS = 'eU#D}-Wo?sDv';
   const SGBD = 'mysql:host='.SERVERDB.';dbname='.DB.';charset=utf8'; */
 
+  
   //Credenciales locales
   const SERVERDB = 'localhost';
   const DB = 'indegwgj_db_daniapp';

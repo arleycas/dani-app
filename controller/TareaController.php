@@ -390,8 +390,8 @@
         $fecha = explode(' ', $fechaHora);
 
         $contenido .= '
-          <div class="col-sm-12 col-lg-6" style="margin-bottom: 1rem">
-            <div class="card card-tarea">
+          <div class="col-sm-12 col-lg-6" style="margin-bottom: 1rem">          
+          <div class="card card-tarea">
               <div class="card-body">
                 <p class="card-text card-descripcion">' . $arrDatos[$i]['TAR_DESCRIPCION'] . '</p>
 

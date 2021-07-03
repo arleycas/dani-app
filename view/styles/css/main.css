@@ -9,7 +9,6 @@ body {
   background-image: url("../../assets/img/wp01.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  backdrop-filter: blur(2px);
 }
 
 *::selection {
