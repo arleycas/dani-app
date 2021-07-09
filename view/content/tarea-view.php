@@ -313,6 +313,12 @@
       }
     });//Fin toggle select subcategoría 
 
+    //Toggle select categoria filtro (esta función es casi la misma que la de abajo)
+    document.querySelector('#selCategoria').addEventListener('change', (e) => {
+      //let valorSelect = e.currentTarget.value; Hacer la función con paso de parametro?
+      rellenarListaSubcategoria();
+    });
+
     //Toggle select categoria filtro
     document.querySelector('#selCategoriaFiltro').addEventListener('change', (e) => {
       //let valorSelect = e.currentTarget.value; Hacer la función con paso de parametro?
@@ -682,7 +688,7 @@
             document.querySelector('#selCategoria').innerHTML = '<option value="" selected disabled>Elije Categoría...</option><option value="NuevaCategoria">Nueva categoría</option>' + phpJsonRes.listaCategorias;
             document.querySelector('#selCategoriaFiltro').innerHTML = '<option value="" selected disabled>Elije Categoría...</option>' + phpJsonRes.listaCategorias;
 
-            document.querySelector('#selSubcategoria').innerHTML = '<option value="" selected disabled>Elije Subcategoría...</option><option value="NuevaSubCategoria">Nueva categoría</option>' + phpJsonRes.listaSubCategorias;
+            //document.querySelector('#selSubcategoria').innerHTML = '<option value="" selected disabled>Elije Subcategoría...</option><option value="NuevaSubCategoria">Nueva categoría</option>' + phpJsonRes.listaSubCategorias;
 
             //Listas del modal de editar
             document.querySelector('#selCategoriaU').innerHTML = '<option value="" selected disabled>Elije Categoría...</option><option value="NuevaCategoria">Nueva categoría</option>' + phpJsonRes.listaCategorias;
@@ -700,6 +706,48 @@
             
             //Reestablecer texto botón
             document.querySelector('#btnAgregarTarea').innerHTML='Lista!';
+
+          }
+      }); //Fin promesa
+
+  }
+
+  function rellenarListaSubcategoria() {
+
+    //let contSpinner = document.querySelector('.cont-spin');
+    let idCategoria = document.querySelector('#selCategoria').value;
+
+    //contSpinner.style.display = 'block';
+
+    let dataForm = new FormData();
+    dataForm.append('tipoForm', 'read');
+    dataForm.append('rListaIDCategoria', idCategoria);
+
+    let header = new Headers();
+    header.append('Content-Type', 'text/html; charset=utf-8');
+    let config = {method: 'POST', header: header, mode: 'cors', cache: 'no-cache', body: dataForm}
+
+    fetch('<?php echo SERVERURL; ?>ajax/tarea-ajax.php', config)
+      .then(res => res.json())
+      .then(phpJsonRes => {
+
+        if(phpJsonRes.res == 'ok') {
+            //document.querySelector('.char-list').innerHTML = phpJsonRes.body
+            //contSpinner.style.display = 'none';
+            //document.querySelector('#contFiltroSubcate').style.display = 'block';
+            document.querySelector('#selSubcategoria').innerHTML = '<option value="" selected disabled>Elije Subcategoría...</option>' + phpJsonRes.listaSubcategorias;
+
+          }else {
+            //msgLogin.style.display = 'block'
+            if(phpJsonRes.res == 'fail') {
+              Swal.fire({icon:'error', text: 'No se pudo insertar la Lista de Subcategoría filtros!'});
+              console.log('Error: ', phpJsonRes.error, phpJsonRes.queryString, 'Lugar: ', phpJsonRes.lugar);
+            } else {
+              Swal.fire({icon:'error', text: 'No hubo respuesta del servidor al traer la lista de subcategoría filtros!'});
+            }
+            
+            //Reestablecer texto botón
+            //document.querySelector('#btnAgregarTarea').innerHTML='Lista!';
 
           }
       }); //Fin promesa

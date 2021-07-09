@@ -324,6 +324,9 @@
         $sQuery .= " AND ts.FKCAT_ID ='$CAT_ID' AND ts.PKSUB_ID = '$SUB_ID' AND tt.TAR_FECHA BETWEEN '$fechaInicio' AND '$fechaFin'";
       }
 
+      //Ordenar mostrando el mas reciente
+      $sQuery .= " ORDER BY tt.TAR_FECHA DESC";
+
       $PDOTarea = MainModel::runSimpleQuery($sQuery);
       if($PDOTarea == true) {
         $CantResultados = $PDOTarea->rowCount();
