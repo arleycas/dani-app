@@ -5,7 +5,7 @@
 
     /* 1. Lista blanca de palabras permitidas para vistas en la url */
     protected static function obtenerVistaModel($vista) {
-      $arrListaBlanca = ['tarea', 'lista-tareas'];
+      $arrListaBlanca = ['tarea', 'lista-tareas', 'settings'];
       if(in_array($vista, $arrListaBlanca)) {
         
         if(is_file('./view/content/' . $vista . '-view.php')) { //Si el archivo existe
