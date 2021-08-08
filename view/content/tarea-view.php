@@ -482,14 +482,14 @@
 
           if(phpJsonRes.res == 'ok') {
             //document.querySelector('.char-list').innerHTML = phpJsonRes.body;
-            obtenerTareas();
             obtenerCantidadTareas();
-
+            
             //Cerrar modal
             let modalCTarea = bootstrap.Modal.getInstance(document.getElementById('modalCTarea'));
             modalCTarea.hide();
-
+            
             Swal.fire({text: 'Tarea insertada!', icon: 'success'});
+            obtenerTareas();
             //document.querySelector('.form-cpersonaje__btnc').innerHTML = 'Agregar';
             //document.querySelector('#' + phpJsonRes.idCard).classList.add('nueva-card'); //Animación apenas se crea!
           }else {
