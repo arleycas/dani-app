@@ -490,6 +490,8 @@
             
             Swal.fire({text: 'Tarea insertada!', icon: 'success'});
             obtenerTareas();
+            limpiarFormulario('#modalCTarea');
+            document.querySelector('#dateFecha').value = '<?php echo date('Y-m-d');?>'
             //document.querySelector('.form-cpersonaje__btnc').innerHTML = 'Agregar';
             //document.querySelector('#' + phpJsonRes.idCard).classList.add('nueva-card'); //Animación apenas se crea!
           }else {
@@ -502,12 +504,11 @@
               console.log('Query: ', phpJsonRes.queryString, '\nLugar: ', phpJsonRes.lugar);
             }else {
               Swal.fire({icon:'error', text: 'No hubo respuesta del servidor al insertar tarea!'});
-            }
-            
-            //Reestablecer texto botón
-            document.querySelector('#btnAgregarTarea').innerHTML='Lista!';
-
+            }  
           }
+
+          //Reestablecer texto botón
+          document.querySelector('#btnAgregarTarea').innerHTML = 'Lista esta tarea!';
           
           //document.querySelector('.form-addbook__btnadd').innerHTML = 'Agregar';
           initEscuchaElementos();
@@ -605,6 +606,7 @@
         modalUTarea.hide();
 
         Swal.fire('Tarea actualizada!');
+
         //document.querySelector('.form-cpersonaje__btnc').innerHTML = 'Agregar';
         //document.querySelector('#' + phpJsonRes.idCard).classList.add('nueva-card'); //Animación apenas se crea!
       }else {
@@ -615,12 +617,10 @@
         } else {
           Swal.fire({icon:'error', text: 'No hubo respuesta del servidor al insertar tarea!'});
         }
-        
-        //Reestablecer texto botón
-        document.querySelector('#btnAgregarTarea').innerHTML='Lista!';
-
       }
       
+      //Reestablecer texto botón
+      document.querySelector('#btnActualizarTarea').innerHTML = 'Guarda cambios!';
       //document.querySelector('.form-addbook__btnadd').innerHTML = 'Agregar';
       initEscuchaElementos();
       //iniciarModales();
@@ -1024,6 +1024,23 @@
       btnIco.classList.remove('fa-chevron-up');
       btnIco.classList.add('fa-chevron-down');
     }
+  }
+
+  function limpiarFormulario(contPadre) {
+    const CP = document.querySelector(contPadre);   
+    
+    //Limpiar inputs
+    CP.querySelectorAll('input').forEach(input => {
+      input.value = '';
+    });
+    //Limpiar selects
+    CP.querySelectorAll('select').forEach(select => {
+      select.value = '';
+    });
+    //Limpiar textarea
+    CP.querySelectorAll('textarea').forEach(textarea => {
+      textarea.value = '';
+    });
   }
 
 </script>
