@@ -296,6 +296,7 @@
         feedback.classList.remove('vali');
       }
 
+      rellenarListaSubcategoria();
     });//Fin Toggle select categoría
     
     //Toggle select subcategoria
@@ -312,12 +313,6 @@
         feedback.classList.remove('vali');
       }
     });//Fin toggle select subcategoría 
-
-    //Toggle select categoria filtro (esta función es casi la misma que la de abajo)
-    document.querySelector('#selCategoria').addEventListener('change', (e) => {
-      //let valorSelect = e.currentTarget.value; Hacer la función con paso de parametro?
-      rellenarListaSubcategoria();
-    });
 
     //Toggle select categoria filtro
     document.querySelector('#selCategoriaFiltro').addEventListener('change', (e) => {
@@ -735,7 +730,10 @@
             //document.querySelector('.char-list').innerHTML = phpJsonRes.body
             //contSpinner.style.display = 'none';
             //document.querySelector('#contFiltroSubcate').style.display = 'block';
-            document.querySelector('#selSubcategoria').innerHTML = '<option value="" selected disabled>Elije Subcategoría...</option>' + phpJsonRes.listaSubcategorias;
+            document.querySelector('#selSubcategoria').innerHTML = `
+              <option value="" selected disabled>Elije Subcategoría...</option>
+              <option value="NuevaSubCategoria">Nueva subcategoría</option>
+              ${phpJsonRes.listaSubcategorias}`;
 
           }else {
             //msgLogin.style.display = 'block'
