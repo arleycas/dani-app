@@ -44,6 +44,22 @@
 
       return $sql;
     }
+
+    protected static function deleteCategoriaModel($catId) {
+      $sql = MainModel::connectDB()->prepare("DELETE FROM indegwgj_db_daniapp.tbl_categoria WHERE PKCAT_ID = :m_cat_id");
+      $sql->bindParam(':m_cat_id', $catId);
+      $sql->execute();
+
+      return $sql;
+    }
+
+    protected static function deleteSubcategoriaModel($subCatId) {
+      $sql = MainModel::connectDB()->prepare("DELETE FROM indegwgj_db_daniapp.tbl_subcategoria WHERE PKSUB_ID = :m_subcat_id");
+      $sql->bindParam(':m_subcat_id', $subCatId);
+      $sql->execute();
+
+      return $sql;
+    }
     /* protected static function obtenerTareas() {
       $sql
     } */

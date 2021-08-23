@@ -614,4 +614,50 @@
 
     }
 
+    public function eliminarCategoriaController() {
+      $tareaId = MainModel::cleanString($_POST['dCatId']);
+
+      $PDOCategoria = TareaModel::deleteCategoriaModel($tareaId);
+      if($PDOCategoria == true) {
+        $CantResultados = $PDOCategoria->rowCount();
+
+        if($CantResultados > 0) {
+          return json_encode(['res' => 'ok']);
+          $PDOCategoria = null; //Cierra la conexión
+          exit;
+        }else if($CantResultados < 1) {
+          return json_encode(['res' => 'nadaOk', 'queryString' => $PDOCategoria->queryString, 'lugar' => 'archivo '.  __FILE__ . ' ~ linea ' . __LINE__]);
+          $PDOCategoria = null; //Cierra la conexión
+          exit;
+        }
+      }else {
+        return json_encode(['res' => 'fail', 'error' => $PDOCategoria->errorInfo(), 'queryString' => $PDOCategoria->queryString, 'lugar' => 'archivo '.  __FILE__ . ' ~ linea ' . __LINE__]);
+        $PDOCategoria = null; //Cierra la conexión
+        exit;
+      }
+    }
+
+    public function eliminarSubcategoriaController() {
+      $subCatId = MainModel::cleanString($_POST['dSubcatId']);
+
+      $PDOSubcategoria = TareaModel::deleteSubcategoriaModel($subCatId);
+      if($PDOSubcategoria == true) {
+        $CantResultados = $PDOSubcategoria->rowCount();
+
+        if($CantResultados > 0) {
+          return json_encode(['res' => 'ok']);
+          $PDOSubcategoria = null; //Cierra la conexión
+          exit;
+        }else if($CantResultados < 1) {
+          return json_encode(['res' => 'nadaOk', 'queryString' => $PDOSubcategoria->queryString, 'lugar' => 'archivo '.  __FILE__ . ' ~ linea ' . __LINE__]);
+          $PDOSubcategoria = null; //Cierra la conexión
+          exit;
+        }
+      }else {
+        return json_encode(['res' => 'fail', 'error' => $PDOSubcategoria->errorInfo(), 'queryString' => $PDOSubcategoria->queryString, 'lugar' => 'archivo '.  __FILE__ . ' ~ linea ' . __LINE__]);
+        $PDOSubcategoria = null; //Cierra la conexión
+        exit;
+      }
+    }
+
   }

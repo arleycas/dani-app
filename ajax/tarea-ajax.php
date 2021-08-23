@@ -47,6 +47,14 @@
       if(isset($_POST['dTarea'])) {
         echo $insTarea->eliminarTareaController();
       }
+
+      if(isset($_POST['dCat'])) {
+        echo $insTarea->eliminarCategoriaController();
+      }
+
+      if(isset($_POST['dSubcat'])) {
+        echo $insTarea->eliminarSubcategoriaController();
+      }
     }
 
     if($tipoForm == 'update') {
