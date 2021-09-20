@@ -6,28 +6,28 @@
   }
 
   .swal2-image {
-    border-radius: 5px;    
+    border-radius: 5px;
   }
 </style>
 <!-- ========== CONTENEDOR MAIN ========== -->
-<div class="main container">  
+<div class="main container">
 
   <div class="opciones rounded my-4">
 
     <div class="container">
       <div class="row justify-content-md-center">
-  
+
         <div class="col col-lg-2 m-3 d-flex justify-content-center">
           <!-- Button trigger modal Agregar tarea -->
           <a class="btn btn-primary py-2 px-4 fs-4 me-2" data-bs-toggle="modal" data-bs-target="#modalCTarea"><i class="fas fa-plus-square"></i> Tarea</a>
         </div>
-        
+
         <div class="col col-lg-2 m-3 d-flex justify-content-center">
           <a id="btnCopiarTareas" class="btn btn-primary py-2 px-4 fs-4"><i class="fas fa-file-excel"></i> Informe </a>
         </div>
-        
+
         <div class="col col-lg-2 m-3 d-flex justify-content-center">
-          <a id="btnToggleFiltro" class="btn btn-toggle-filtro py-2 px-4 fs-4 text-white"> Filtro  <i class="fas fa-filter"></i> <i id="btnIcoAcordeonFiltro" class="fas fa-chevron-down"></i> </a>
+          <a id="btnToggleFiltro" class="btn btn-toggle-filtro py-2 px-4 fs-4 text-white"> Filtro <i class="fas fa-filter"></i> <i id="btnIcoAcordeonFiltro" class="fas fa-chevron-down"></i> </a>
         </div>
       </div>
     </div>
@@ -62,34 +62,34 @@
           <select id="selCategoriaFiltro" class="form-select" aria-label="Default select example">
             <option value="" selected="" disabled="">Elije Categoría...</option>>
           </select>
-        </div>  
+        </div>
 
         <div id="contFiltroSubcate" class="col-4" style="display: none;">
           <label for="selSubcategoriaFiltro">Subcategorias </label>
-          <div class="input-group">        
+          <div class="input-group">
             <button id="btnOcultarFiltroSubcate" class="btn btn-outline-secondary" type="button"><i class="fas fa-times"></i></button>
             <select id="selSubcategoriaFiltro" class="form-select" aria-label="Default select example">
               <option value="" selected="" disabled="">Elije Subcategoría...</option>
             </select>
           </div>
-        </div>  
+        </div>
 
-      </div> 
+      </div>
 
       <!-- Filtro de fecha -->
       <div id="contFiltroFecha" class="row" style="display: none;">
 
-      <div class="col-4">
-        <label for="inpFechaInicioFiltro">Fecha inicio </label>
-        <input id="inpFechaInicioFiltro" type="date" class="form-control" name="cFechaTarea" value="<?php echo date('Y-m-d');?>">
-        <div class="box-feedback" data-elemForm="#inpFechaInicioFiltro"><i class="fas fa-exclamation-circle me-1"></i>No olvides la fecha!</div>
-      </div>
+        <div class="col-4">
+          <label for="inpFechaInicioFiltro">Fecha inicio </label>
+          <input id="inpFechaInicioFiltro" type="date" class="form-control" name="cFechaTarea" value="<?php echo date('Y-m-d'); ?>">
+          <div class="box-feedback" data-elemForm="#inpFechaInicioFiltro"><i class="fas fa-exclamation-circle me-1"></i>No olvides la fecha!</div>
+        </div>
 
-      <div class="col-4">
-        <label for="inpFechaFinFiltro">Fecha fin </label>
-        <input id="inpFechaFinFiltro" type="date" class="form-control" name="cFechaTarea" value="<?php echo date('Y-m-d');?>">
-        <div class="box-feedback" data-elemForm="#inpFechaFinFiltro"><i class="fas fa-exclamation-circle me-1"></i>No olvides la fecha!</div>
-      </div>
+        <div class="col-4">
+          <label for="inpFechaFinFiltro">Fecha fin </label>
+          <input id="inpFechaFinFiltro" type="date" class="form-control" name="cFechaTarea" value="<?php echo date('Y-m-d'); ?>">
+          <div class="box-feedback" data-elemForm="#inpFechaFinFiltro"><i class="fas fa-exclamation-circle me-1"></i>No olvides la fecha!</div>
+        </div>
       </div>
 
       <a id="btnFiltrarTareas" class="btn btn-primary m-3"><i class="fas fa-filter"></i> Filtrar</a>
@@ -120,7 +120,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          
+
           <form class="form-ctarea" action="<?php echo SERVERURL; ?>ajax/tarea-ajax.php" method="POST" data-form="create" autocomplete="on">
 
             <div class="container">
@@ -165,20 +165,20 @@
 
                 <div class="col-12">
                   <label for="dateFecha">¿Cuando hice la tarea? </label>
-                  <input id="dateFecha" type="date" class="form-control" name="cFechaTarea" value="<?php echo date('Y-m-d');?>">
+                  <input id="dateFecha" type="date" class="form-control" name="cFechaTarea" value="<?php echo date('Y-m-d'); ?>">
                   <div class="box-feedback vali" data-elemForm="#dateFecha"><i class="fas fa-exclamation-circle me-1"></i>No olvides la fecha!</div>
                 </div>
 
-                <div class="col-12"> 
+                <div class="col-12">
                   <button id="btnAgregarTarea" type="submit" class="btn btn-primary">Lista esta tarea!</button>
                 </div>
 
               </div>
             </div>
 
-            </form>
+          </form>
 
-          </div>
+        </div>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -196,7 +196,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          
+
           <form class="form-utarea" action="<?php echo SERVERURL; ?>ajax/tarea-ajax.php" method="POST" data-form="update" autocomplete="on">
 
             <div class="container">
@@ -245,20 +245,20 @@
 
                 <div class="col-12">
                   <label for="inpFechaU">¿Cuando hice la tarea? </label>
-                  <input id="inpFechaU" type="date" class="form-control" name="uFechaTarea" value="<?php echo date('Y-m-d');?>">
+                  <input id="inpFechaU" type="date" class="form-control" name="uFechaTarea" value="<?php echo date('Y-m-d'); ?>">
                   <div class="box-feedback vali" data-elemForm="#inpFechaU"><i class="fas fa-exclamation-circle me-1"></i>No olvides la fecha!</div>
                 </div>
 
-                <div class="col-12"> 
+                <div class="col-12">
                   <button id="btnActualizarTarea" type="submit" class="btn btn-primary">Guarda cambios!</button>
                 </div>
 
               </div>
             </div>
 
-            </form>
+          </form>
 
-          </div>
+        </div>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -272,10 +272,9 @@
 
 <!-- Scripts -->
 <script>
-
   /* -------- Fn. Carga inicial de la página -------- */
-  document.addEventListener('DOMContentLoaded', function(){
-  
+  document.addEventListener('DOMContentLoaded', function() {
+
     initEscuchaElementos();
     rellenarListas();
     obtenerCantidadTareas();
@@ -286,32 +285,32 @@
       let valorSelect = e.currentTarget.value;
       const contSelNuevaCategoria = document.querySelector('#contNuevaCategoria');
       const feedback = document.querySelector('#feedNuevaCategoria');
-      
-      if(valorSelect == 'NuevaCategoria') {
+
+      if (valorSelect == 'NuevaCategoria') {
         contSelNuevaCategoria.style.display = 'block';
         feedback.classList.add('vali');
-      }else {
+      } else {
         contSelNuevaCategoria.style.display = 'none';
         feedback.classList.remove('vali');
       }
 
       rellenarListaSubcategoria();
-    });//Fin Toggle select categoría
-    
+    }); //Fin Toggle select categoría
+
     //Toggle select subcategoria
     document.querySelector('#selSubcategoria').addEventListener('change', (e) => {
       let valorSelect = e.currentTarget.value;
       const contSelNuevaSubCategoria = document.querySelector('#contNuevaSubCategoria');
       const feedback = document.querySelector('#feedNuevaSubcategoria');
-      
-      if(valorSelect == 'NuevaSubCategoria') {
+
+      if (valorSelect == 'NuevaSubCategoria') {
         contSelNuevaSubCategoria.style.display = 'block';
         feedback.classList.add('vali');
-      }else {
+      } else {
         contSelNuevaSubCategoria.style.display = 'none';
         feedback.classList.remove('vali');
       }
-    });//Fin toggle select subcategoría 
+    }); //Fin toggle select subcategoría 
 
     //Toggle select categoria filtro
     document.querySelector('#selCategoriaFiltro').addEventListener('change', (e) => {
@@ -322,15 +321,15 @@
     //Toggle para mostrar o ocultar filtro de categoria
     document.querySelector('#toggleCateFiltro').addEventListener('click', (e) => {
 
-      let valorToggle = e.currentTarget.value; 
+      let valorToggle = e.currentTarget.value;
       let contFiltros = document.querySelector('#contFiltros');
 
-      if(valorToggle == 'off') {
+      if (valorToggle == 'off') {
         e.currentTarget.value = 'on';
         console.log('muestra');
         contFiltros.style.display = 'flex';
         //AGREGAR LA CLASE DE VALIDAR MAS ADELANTE A LAS FECHAS FILTRO
-      }else if(valorToggle == 'on') {
+      } else if (valorToggle == 'on') {
         e.currentTarget.value = 'off';
         console.log('oculta');
         contFiltros.style.display = 'none';
@@ -340,15 +339,15 @@
 
     //Toggle para mostrar o ocultar filtro de fechas
     document.querySelector('#toggleFechasFiltro').addEventListener('click', (e) => {
-      let valorToggle = e.currentTarget.value; 
+      let valorToggle = e.currentTarget.value;
       let contFiltrosFecha = document.querySelector('#contFiltroFecha');
 
-      if(valorToggle == 'off') {
+      if (valorToggle == 'off') {
         e.currentTarget.value = 'on';
         console.log('muestra');
         contFiltroFecha.style.display = 'flex';
         //AGREGAR LA CLASE DE VALIDAR MAS ADELANTE A LAS FECHAS FILTRO
-      }else if(valorToggle == 'on') {
+      } else if (valorToggle == 'on') {
         e.currentTarget.value = 'off';
         console.log('oculta');
         contFiltroFecha.style.display = 'none';
@@ -373,7 +372,7 @@
 
     //toggle abrir/cerrar acordeon filtro
     document.querySelector('#btnToggleFiltro').addEventListener('click', toggleAcordeonFiltro)
-    
+
   }, false); //Fin carga inicial
 
   function initEscuchaElementos() {
@@ -386,8 +385,8 @@
     document.querySelectorAll('form').forEach(formulario => {
 
       formulario.addEventListener('keydown', function(e) {
-        
-        if((e.key == 'Enter') && (document.activeElement.type != 'textarea')) {
+
+        if ((e.key == 'Enter') && (document.activeElement.type != 'textarea')) {
           e.preventDefault();
         }
       });
@@ -418,7 +417,7 @@
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
           confirmButtonText: 'Si, borrala!',
-          imageUrl: '<?php echo SERVERURL . 'view/assets/img/kiki01.gif';?>',
+          imageUrl: '<?php echo SERVERURL . 'view/assets/img/kiki01.gif'; ?>',
           imageWidth: 250,
           imageHeight: 150,
           imageAlt: 'Kiki carga',
@@ -433,7 +432,7 @@
 
     //Escucha botones para rellenar los datos del modal de Editar Tarea
     document.querySelectorAll('.btn-utarea').forEach(btnEdit => {
-      
+
       btnEdit.addEventListener('click', () => {
         let tareaId = btnEdit.getAttribute('data-id-utarea');
         obtenerUnaTarea(tareaId);
@@ -454,60 +453,78 @@
     header.append('Content-Type', 'text/html; charset=utf-8');
     //let codLibro = document.querySelector('#inpCodLibro').value;
 
-   /*  console.log('cate: ', dataForm.get('cCategoriaTarea'));
-    console.log('nueva cate: ', dataForm.get('cNuevaCategoria'));
-    console.log('subcate', dataForm.get('cSubcategoriaTarea'));
-    console.log('nueva subcate', dataForm.get('cNuevaSubcategoriaTarea'));
-    console.log('descrip: ', dataForm.get('cDescripcionTarea'));
-    console.log('fecha: ', dataForm.get('cFechaTarea')); */
+    /*  console.log('cate: ', dataForm.get('cCategoriaTarea'));
+     console.log('nueva cate: ', dataForm.get('cNuevaCategoria'));
+     console.log('subcate', dataForm.get('cSubcategoriaTarea'));
+     console.log('nueva subcate', dataForm.get('cNuevaSubcategoriaTarea'));
+     console.log('descrip: ', dataForm.get('cDescripcionTarea'));
+     console.log('fecha: ', dataForm.get('cFechaTarea')); */
 
     dataForm.append('tipoForm', tipoForm);
     //dataForm.append('cCodLibro', codLibro);
 
-    let config = {method: method, header: header, mode: 'cors', cache: 'no-cache', body: dataForm}
+    let config = {
+      method: method,
+      header: header,
+      mode: 'cors',
+      cache: 'no-cache',
+      body: dataForm
+    }
 
     /* if(validarVacios()) { */
 
-      let promesaCrearTarea = fetch(action, config);
+    let promesaCrearTarea = fetch(action, config);
 
-        promesaCrearTarea.then(res => res.json())
-        .then(phpJsonRes => {
-          document.querySelector('#btnAgregarTarea').innerHTML = '<div class="spinner"></div>';
+    promesaCrearTarea.then(res => res.json())
+      .then(phpJsonRes => {
+        document.querySelector('#btnAgregarTarea').innerHTML = '<div class="spinner"></div>';
 
-          if(phpJsonRes.res == 'ok') {
-            //document.querySelector('.char-list').innerHTML = phpJsonRes.body;
-            obtenerCantidadTareas();
-            
-            //Cerrar modal
-            let modalCTarea = bootstrap.Modal.getInstance(document.getElementById('modalCTarea'));
-            modalCTarea.hide();
-            
-            Swal.fire({text: 'Tarea insertada!', icon: 'success'});
-            obtenerTareas();
-            limpiarFormulario('#modalCTarea');
-            document.querySelector('#dateFecha').value = '<?php echo date('Y-m-d');?>'
-            //document.querySelector('.form-cpersonaje__btnc').innerHTML = 'Agregar';
-            //document.querySelector('#' + phpJsonRes.idCard).classList.add('nueva-card'); //Animación apenas se crea!
-          }else {
-            //msgLogin.style.display = 'block'
-            if(phpJsonRes.res == 'fail') {
-              Swal.fire({icon:'error', text: 'No se pudo insertar la tarea!'});
-              console.log('Error: ', phpJsonRes.error, 'Lugar: ', phpJsonRes.lugar);
-            } else if(phpJsonRes.res == 'nadaOk'){
-              Swal.fire({icon:'info', text: 'Esa tarea no existe! WTF!'});
-              console.log('Query: ', phpJsonRes.queryString, '\nLugar: ', phpJsonRes.lugar);
-            }else {
-              Swal.fire({icon:'error', text: 'No hubo respuesta del servidor al insertar tarea!'});
-            }  
+        if (phpJsonRes.res == 'ok') {
+          //document.querySelector('.char-list').innerHTML = phpJsonRes.body;
+          obtenerCantidadTareas();
+
+          //Cerrar modal
+          let modalCTarea = bootstrap.Modal.getInstance(document.getElementById('modalCTarea'));
+          modalCTarea.hide();
+
+          Swal.fire({
+            text: 'Tarea insertada!',
+            icon: 'success'
+          });
+          obtenerTareas();
+          limpiarFormulario('#modalCTarea');
+          document.querySelector('#dateFecha').value = '<?php echo date('Y-m-d'); ?>'
+          //document.querySelector('.form-cpersonaje__btnc').innerHTML = 'Agregar';
+          //document.querySelector('#' + phpJsonRes.idCard).classList.add('nueva-card'); //Animación apenas se crea!
+        } else {
+          //msgLogin.style.display = 'block'
+          if (phpJsonRes.res == 'fail') {
+            Swal.fire({
+              icon: 'error',
+              text: 'No se pudo insertar la tarea!'
+            });
+            console.log('Error: ', phpJsonRes.error, 'Lugar: ', phpJsonRes.lugar);
+          } else if (phpJsonRes.res == 'nadaOk') {
+            Swal.fire({
+              icon: 'info',
+              text: 'Esa tarea no existe! WTF!'
+            });
+            console.log('Query: ', phpJsonRes.queryString, '\nLugar: ', phpJsonRes.lugar);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              text: 'No hubo respuesta del servidor al insertar tarea!'
+            });
           }
+        }
 
-          //Reestablecer texto botón
-          document.querySelector('#btnAgregarTarea').innerHTML = 'Lista esta tarea!';
-          
-          //document.querySelector('.form-addbook__btnadd').innerHTML = 'Agregar';
-          initEscuchaElementos();
-          //iniciarModales();
-        }); //Fin promesa
+        //Reestablecer texto botón
+        document.querySelector('#btnAgregarTarea').innerHTML = 'Lista esta tarea!';
+
+        //document.querySelector('.form-addbook__btnadd').innerHTML = 'Agregar';
+        initEscuchaElementos();
+        //iniciarModales();
+      }); //Fin promesa
 
     //alert('SI sirve? 2');
 
@@ -520,43 +537,55 @@
     dataForm.append('tipoForm', 'delete');
     dataForm.append('dTarea', 'dTarea');
     dataForm.append('dTareaId', tareaId);
-    
+
     let header = new Headers();
     header.append('Content-Type', 'text/html; charset=utf-8');
-    let config = {method: 'POST', header: header, mode: 'cors', cache: 'no-cache', body: dataForm}
+    let config = {
+      method: 'POST',
+      header: header,
+      mode: 'cors',
+      cache: 'no-cache',
+      body: dataForm
+    }
 
     fetch('<?php echo SERVERURL; ?>ajax/tarea-ajax.php', config)
       .then(res => res.json())
       .then(phpJsonRes => {
 
-        if(phpJsonRes.res == 'ok') {
+        if (phpJsonRes.res == 'ok') {
 
-            obtenerTareas();
-            Swal.fire('!Borrada!', 'Tarea a la caneca!', 'success');
+          obtenerTareas();
+          Swal.fire('!Borrada!', 'Tarea a la caneca!', 'success');
 
-          }else {
-            //msgLogin.style.display = 'block'
-            if(phpJsonRes.res == 'fail') {
-              Swal.fire({icon:'error', text: 'No se pudo eliminar la tarea!'});
-              console.log('Error: ', phpJsonRes.error, phpJsonRes.queryString, 'Lugar: ', phpJsonRes.lugar);
-            } else if(phpJsonRes.res == 'nadaOk'){
-              Swal.fire({icon:'info', text: 'Esa tarea no existe! WTF!'});
-              console.log('Query: ', phpJsonRes.queryString, '\nLugar: ', phpJsonRes.lugar);
-            } else {
-              Swal.fire({
-                title: 'Error',
-                text: 'No hubo respuesta del servidor al intentar eliminar la tarea! Por favor comunicar a Arlo!',
-                imageUrl: '<?php echo SERVERURL . 'view/assets/img/bob01.gif';?>',
-                imageWidth: 220,
-                imageHeight: 150,
-                imageAlt: 'Bob fail',
-              });
-            }
-            
-            //Reestablecer texto botón
-            document.querySelector('#btnAgregarTarea').innerHTML='Lista!';
-
+        } else {
+          //msgLogin.style.display = 'block'
+          if (phpJsonRes.res == 'fail') {
+            Swal.fire({
+              icon: 'error',
+              text: 'No se pudo eliminar la tarea!'
+            });
+            console.log('Error: ', phpJsonRes.error, phpJsonRes.queryString, 'Lugar: ', phpJsonRes.lugar);
+          } else if (phpJsonRes.res == 'nadaOk') {
+            Swal.fire({
+              icon: 'info',
+              text: 'Esa tarea no existe! WTF!'
+            });
+            console.log('Query: ', phpJsonRes.queryString, '\nLugar: ', phpJsonRes.lugar);
+          } else {
+            Swal.fire({
+              title: 'Error',
+              text: 'No hubo respuesta del servidor al intentar eliminar la tarea! Por favor comunicar a Arlo!',
+              imageUrl: '<?php echo SERVERURL . 'view/assets/img/bob01.gif'; ?>',
+              imageWidth: 220,
+              imageHeight: 150,
+              imageAlt: 'Bob fail',
+            });
           }
+
+          //Reestablecer texto botón
+          document.querySelector('#btnAgregarTarea').innerHTML = 'Lista!';
+
+        }
 
       }); //Fin promesa
   }
@@ -582,43 +611,54 @@
     dataForm.append('tipoForm', tipoForm);
     //dataForm.append('cCodLibro', codLibro);
 
-    let config = {method: method, header: header, mode: 'cors', cache: 'no-cache', body: dataForm}
+    let config = {
+      method: method,
+      header: header,
+      mode: 'cors',
+      cache: 'no-cache',
+      body: dataForm
+    }
 
     fetch(action, config)
-    .then(res => res.json())
-    .then(phpJsonRes => {
-      document.querySelector('#btnAgregarTarea').innerHTML = '<div class="spinner"></div>';
+      .then(res => res.json())
+      .then(phpJsonRes => {
 
-      if(phpJsonRes.res == 'ok') {
-        //document.querySelector('.char-list').innerHTML = phpJsonRes.body;
-        obtenerTareas();
-        obtenerCantidadTareas();
-        rellenarListas();
+        if (phpJsonRes.res == 'ok') {
+          //document.querySelector('.char-list').innerHTML = phpJsonRes.body;
+          obtenerTareas();
+          obtenerCantidadTareas();
+          rellenarListas();
 
-        //Cerrar modal
-        let modalUTarea = bootstrap.Modal.getInstance(document.getElementById('modalUTarea'));
-        modalUTarea.hide();
+          //Cerrar modal
+          let modalUTarea = bootstrap.Modal.getInstance(document.getElementById('modalUTarea'));
+          modalUTarea.hide();
 
-        Swal.fire('Tarea actualizada!');
+          Swal.fire('Tarea actualizada!');
 
-        //document.querySelector('.form-cpersonaje__btnc').innerHTML = 'Agregar';
-        //document.querySelector('#' + phpJsonRes.idCard).classList.add('nueva-card'); //Animación apenas se crea!
-      }else {
-        //msgLogin.style.display = 'block'
-        if(phpJsonRes.res == 'fail') {
-          Swal.fire({icon:'error', text: 'No se pudo actualizar la tarea!'});
-          console.log('Error: ', phpJsonRes.error, 'Lugar: ', phpJsonRes.lugar);
+          //document.querySelector('.form-cpersonaje__btnc').innerHTML = 'Agregar';
+          //document.querySelector('#' + phpJsonRes.idCard).classList.add('nueva-card'); //Animación apenas se crea!
         } else {
-          Swal.fire({icon:'error', text: 'No hubo respuesta del servidor al insertar tarea!'});
+          //msgLogin.style.display = 'block'
+          if (phpJsonRes.res == 'fail') {
+            Swal.fire({
+              icon: 'error',
+              text: 'No se pudo actualizar la tarea!'
+            });
+            console.log('Error: ', phpJsonRes.error, 'Lugar: ', phpJsonRes.lugar);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              text: 'No hubo respuesta del servidor al insertar tarea!'
+            });
+          }
         }
-      }
-      
-      //Reestablecer texto botón
-      document.querySelector('#btnActualizarTarea').innerHTML = 'Guarda cambios!';
-      //document.querySelector('.form-addbook__btnadd').innerHTML = 'Agregar';
-      initEscuchaElementos();
-      //iniciarModales();
-    }); //Fin promesa
+
+        //Reestablecer texto botón
+        document.querySelector('#btnActualizarTarea').innerHTML = 'Guarda cambios!';
+        //document.querySelector('.form-addbook__btnadd').innerHTML = 'Agregar';
+        initEscuchaElementos();
+        //iniciarModales();
+      }); //Fin promesa
 
 
 
@@ -632,15 +672,15 @@
 
       let elemForm = document.querySelector(boxFeed.getAttribute('data-elemForm'));
 
-      if((elemForm.value == '') || (elemForm.value == null)) {
+      if ((elemForm.value == '') || (elemForm.value == null)) {
         boxFeed.style.display = 'block ';
-        boxFeed.style.animationName = 'muestraFeed';    
+        boxFeed.style.animationName = 'muestraFeed';
         elemForm.classList.add('fe-invalido');
 
         arrVacios.push(0); //pushea 0 si es invalido
-      }else {
+      } else {
         boxFeed.style.display = 'none ';
-        boxFeed.style.animationName = 'none';    
+        boxFeed.style.animationName = 'none';
         elemForm.classList.remove('fe-invalido');
 
         arrVacios.push(1); //pushea 1 si es valido
@@ -649,14 +689,14 @@
     });
 
     //multiplica array
-    const res = arrVacios.reduce((p, c) => p*c);
+    const res = arrVacios.reduce((p, c) => p * c);
 
     arrVacios = [];
-    if(res == 0) {
+    if (res == 0) {
       return false; //faltan input
-    }else if(res == 1) {
+    } else if (res == 1) {
       return true; //elementos form validados
-    }else {
+    } else {
       return false;
     }
 
@@ -670,38 +710,50 @@
 
     let header = new Headers();
     header.append('Content-Type', 'text/html; charset=utf-8');
-    let config = {method: 'POST', header: header, mode: 'cors', cache: 'no-cache', body: dataForm}
+    let config = {
+      method: 'POST',
+      header: header,
+      mode: 'cors',
+      cache: 'no-cache',
+      body: dataForm
+    }
 
     fetch('<?php echo SERVERURL; ?>ajax/tarea-ajax.php', config)
       .then(res => res.json())
       .then(phpJsonRes => {
 
-        if(phpJsonRes.res == 'ok') {
-            //document.querySelector('.char-list').innerHTML = phpJsonRes.body;
+        if (phpJsonRes.res == 'ok') {
+          //document.querySelector('.char-list').innerHTML = phpJsonRes.body;
 
-            document.querySelector('#selCategoria').innerHTML = '<option value="" selected disabled>Elije Categoría...</option><option value="NuevaCategoria">Nueva categoría</option>' + phpJsonRes.listaCategorias;
-            document.querySelector('#selCategoriaFiltro').innerHTML = '<option value="" selected disabled>Elije Categoría...</option>' + phpJsonRes.listaCategorias;
+          document.querySelector('#selCategoria').innerHTML = '<option value="" selected disabled>Elije Categoría...</option><option value="NuevaCategoria">Nueva categoría</option>' + phpJsonRes.listaCategorias;
+          document.querySelector('#selCategoriaFiltro').innerHTML = '<option value="" selected disabled>Elije Categoría...</option>' + phpJsonRes.listaCategorias;
 
-            //document.querySelector('#selSubcategoria').innerHTML = '<option value="" selected disabled>Elije Subcategoría...</option><option value="NuevaSubCategoria">Nueva categoría</option>' + phpJsonRes.listaSubCategorias;
+          //document.querySelector('#selSubcategoria').innerHTML = '<option value="" selected disabled>Elije Subcategoría...</option><option value="NuevaSubCategoria">Nueva categoría</option>' + phpJsonRes.listaSubCategorias;
 
-            //Listas del modal de editar
-            document.querySelector('#selCategoriaU').innerHTML = '<option value="" selected disabled>Elije Categoría...</option><option value="NuevaCategoria">Nueva categoría</option>' + phpJsonRes.listaCategorias;
-            document.querySelector('#selSubcategoriaU').innerHTML = '<option value="" selected disabled>Elije Subcategoría...</option><option value="NuevaSubCategoria">Nueva categoría</option>' + phpJsonRes.listaSubCategorias;
+          //Listas del modal de editar
+          document.querySelector('#selCategoriaU').innerHTML = '<option value="" selected disabled>Elije Categoría...</option><option value="NuevaCategoria">Nueva categoría</option>' + phpJsonRes.listaCategorias;
+          document.querySelector('#selSubcategoriaU').innerHTML = '<option value="" selected disabled>Elije Subcategoría...</option><option value="NuevaSubCategoria">Nueva categoría</option>' + phpJsonRes.listaSubCategorias;
 
 
-          }else {
-            //msgLogin.style.display = 'block'
-            if(phpJsonRes.res == 'fail') {
-              Swal.fire({icon:'error', text: 'No se pudo insertar la Lista!'});
-              console.log('Error: ', phpJsonRes.error, phpJsonRes.queryString, 'Lugar: ', phpJsonRes.lugar);
-            } else {
-              Swal.fire({icon:'error', text: 'No hubo respuesta del servidor al traer las listas!'});
-            }
-            
-            //Reestablecer texto botón
-            document.querySelector('#btnAgregarTarea').innerHTML='Lista!';
-
+        } else {
+          //msgLogin.style.display = 'block'
+          if (phpJsonRes.res == 'fail') {
+            Swal.fire({
+              icon: 'error',
+              text: 'No se pudo insertar la Lista!'
+            });
+            console.log('Error: ', phpJsonRes.error, phpJsonRes.queryString, 'Lugar: ', phpJsonRes.lugar);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              text: 'No hubo respuesta del servidor al traer las listas!'
+            });
           }
+
+          //Reestablecer texto botón
+          document.querySelector('#btnAgregarTarea').innerHTML = 'Lista!';
+
+        }
       }); //Fin promesa
 
   }
@@ -719,34 +771,46 @@
 
     let header = new Headers();
     header.append('Content-Type', 'text/html; charset=utf-8');
-    let config = {method: 'POST', header: header, mode: 'cors', cache: 'no-cache', body: dataForm}
+    let config = {
+      method: 'POST',
+      header: header,
+      mode: 'cors',
+      cache: 'no-cache',
+      body: dataForm
+    }
 
     fetch('<?php echo SERVERURL; ?>ajax/tarea-ajax.php', config)
       .then(res => res.json())
       .then(phpJsonRes => {
 
-        if(phpJsonRes.res == 'ok') {
-            //document.querySelector('.char-list').innerHTML = phpJsonRes.body
-            //contSpinner.style.display = 'none';
-            //document.querySelector('#contFiltroSubcate').style.display = 'block';
-            document.querySelector('#selSubcategoria').innerHTML = `
+        if (phpJsonRes.res == 'ok') {
+          //document.querySelector('.char-list').innerHTML = phpJsonRes.body
+          //contSpinner.style.display = 'none';
+          //document.querySelector('#contFiltroSubcate').style.display = 'block';
+          document.querySelector('#selSubcategoria').innerHTML = `
               <option value="" selected disabled>Elije Subcategoría...</option>
               <option value="NuevaSubCategoria">Nueva subcategoría</option>
               ${phpJsonRes.listaSubcategorias}`;
 
-          }else {
-            //msgLogin.style.display = 'block'
-            if(phpJsonRes.res == 'fail') {
-              Swal.fire({icon:'error', text: 'No se pudo insertar la Lista de Subcategoría filtros!'});
-              console.log('Error: ', phpJsonRes.error, phpJsonRes.queryString, 'Lugar: ', phpJsonRes.lugar);
-            } else {
-              Swal.fire({icon:'error', text: 'No hubo respuesta del servidor al traer la lista de subcategoría filtros!'});
-            }
-            
-            //Reestablecer texto botón
-            //document.querySelector('#btnAgregarTarea').innerHTML='Lista!';
-
+        } else {
+          //msgLogin.style.display = 'block'
+          if (phpJsonRes.res == 'fail') {
+            Swal.fire({
+              icon: 'error',
+              text: 'No se pudo insertar la Lista de Subcategoría filtros!'
+            });
+            console.log('Error: ', phpJsonRes.error, phpJsonRes.queryString, 'Lugar: ', phpJsonRes.lugar);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              text: 'No hubo respuesta del servidor al traer la lista de subcategoría filtros!'
+            });
           }
+
+          //Reestablecer texto botón
+          //document.querySelector('#btnAgregarTarea').innerHTML='Lista!';
+
+        }
       }); //Fin promesa
 
   }
@@ -764,68 +828,92 @@
 
     let header = new Headers();
     header.append('Content-Type', 'text/html; charset=utf-8');
-    let config = {method: 'POST', header: header, mode: 'cors', cache: 'no-cache', body: dataForm}
+    let config = {
+      method: 'POST',
+      header: header,
+      mode: 'cors',
+      cache: 'no-cache',
+      body: dataForm
+    }
 
     fetch('<?php echo SERVERURL; ?>ajax/tarea-ajax.php', config)
       .then(res => res.json())
       .then(phpJsonRes => {
 
-        if(phpJsonRes.res == 'ok') {
-            //document.querySelector('.char-list').innerHTML = phpJsonRes.body
-            //contSpinner.style.display = 'none';
-            document.querySelector('#contFiltroSubcate').style.display = 'block';
-            document.querySelector('#selSubcategoriaFiltro').innerHTML = '<option value="" selected disabled>Elije Subcategoría...</option>' + phpJsonRes.listaSubcategorias;
+        if (phpJsonRes.res == 'ok') {
+          //document.querySelector('.char-list').innerHTML = phpJsonRes.body
+          //contSpinner.style.display = 'none';
+          document.querySelector('#contFiltroSubcate').style.display = 'block';
+          document.querySelector('#selSubcategoriaFiltro').innerHTML = '<option value="" selected disabled>Elije Subcategoría...</option>' + phpJsonRes.listaSubcategorias;
 
-          }else {
-            //msgLogin.style.display = 'block'
-            if(phpJsonRes.res == 'fail') {
-              Swal.fire({icon:'error', text: 'No se pudo insertar la Lista de Subcategoría filtros!'});
-              console.log('Error: ', phpJsonRes.error, phpJsonRes.queryString, 'Lugar: ', phpJsonRes.lugar);
-            } else {
-              Swal.fire({icon:'error', text: 'No hubo respuesta del servidor al traer la lista de subcategoría filtros!'});
-            }
-            
-            //Reestablecer texto botón
-            //document.querySelector('#btnAgregarTarea').innerHTML='Lista!';
-
+        } else {
+          //msgLogin.style.display = 'block'
+          if (phpJsonRes.res == 'fail') {
+            Swal.fire({
+              icon: 'error',
+              text: 'No se pudo insertar la Lista de Subcategoría filtros!'
+            });
+            console.log('Error: ', phpJsonRes.error, phpJsonRes.queryString, 'Lugar: ', phpJsonRes.lugar);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              text: 'No hubo respuesta del servidor al traer la lista de subcategoría filtros!'
+            });
           }
+
+          //Reestablecer texto botón
+          //document.querySelector('#btnAgregarTarea').innerHTML='Lista!';
+
+        }
       }); //Fin promesa
 
   }
 
-  function obtenerCantidadTareas(){
+  function obtenerCantidadTareas() {
     let dataForm = new FormData();
     dataForm.append('tipoForm', 'read');
     dataForm.append('rCantidadTareas', 'rCantidadTareas');
 
     let header = new Headers();
     header.append('Content-Type', 'text/html; charset=utf-8');
-    let config = {method: 'POST', header: header, mode: 'cors', cache: 'no-cache', body: dataForm}
+    let config = {
+      method: 'POST',
+      header: header,
+      mode: 'cors',
+      cache: 'no-cache',
+      body: dataForm
+    }
 
     fetch('<?php echo SERVERURL; ?>ajax/tarea-ajax.php', config)
       .then(res => res.json())
       .then(phpJsonRes => {
 
-        if(phpJsonRes.res == 'ok') {
-            //document.querySelector('.char-list').innerHTML = phpJsonRes.body;
+        if (phpJsonRes.res == 'ok') {
+          //document.querySelector('.char-list').innerHTML = phpJsonRes.body;
 
-            document.querySelector('#cantTareasHoy').innerHTML = phpJsonRes.cantTareasHoy;
-            document.querySelector('#cantTareasMes').innerHTML = phpJsonRes.cantTareasMes;
-            document.querySelector('#cantTareasAgno').innerHTML = phpJsonRes.cantTareasAgno;
+          document.querySelector('#cantTareasHoy').innerHTML = phpJsonRes.cantTareasHoy;
+          document.querySelector('#cantTareasMes').innerHTML = phpJsonRes.cantTareasMes;
+          document.querySelector('#cantTareasAgno').innerHTML = phpJsonRes.cantTareasAgno;
 
-          }else {
-            //msgLogin.style.display = 'block'
-            if(phpJsonRes.res == 'fail') {
-              Swal.fire({icon:'error', text: 'No se pudo insertar la Lista!'});
-              console.log('Error: ', phpJsonRes.error, 'Query: ', phpJsonRes.query,'Lugar: ', phpJsonRes.lugar);
-            } else {
-              Swal.fire({icon:'error', text: 'No hubo respuesta del servidor al traer las listas!'});
-            }
-            
-            //Reestablecer texto botón
-            document.querySelector('#btnAgregarTarea').innerHTML='Lista!';
-
+        } else {
+          //msgLogin.style.display = 'block'
+          if (phpJsonRes.res == 'fail') {
+            Swal.fire({
+              icon: 'error',
+              text: 'No se pudo insertar la Lista!'
+            });
+            console.log('Error: ', phpJsonRes.error, 'Query: ', phpJsonRes.query, 'Lugar: ', phpJsonRes.lugar);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              text: 'No hubo respuesta del servidor al traer las listas!'
+            });
           }
+
+          //Reestablecer texto botón
+          document.querySelector('#btnAgregarTarea').innerHTML = 'Lista!';
+
+        }
       }); //Fin promesa
   }
 
@@ -843,71 +931,85 @@
     dataForm.append('tipoForm', 'read');
     dataForm.append('rTareas', 'rTareas');
 
-    if((toggleCateFiltro == 'on') && (toggleFechasFiltro == 'off')) {
+    if ((toggleCateFiltro == 'on') && (toggleFechasFiltro == 'off')) {
 
-      if(contFiltroSubcate.style.display == 'none') {
+      if (contFiltroSubcate.style.display == 'none') {
         dataForm.append('rTareasCat', 'rTareasCat');
         dataForm.append('rCateFiltro', selCategoriaFiltro);
-      }else{
+      } else {
         dataForm.append('rTareasCatSub', 'rTareasCatSub');
         dataForm.append('rCateFiltro', selCategoriaFiltro);
         dataForm.append('rSubCateFiltro', selSubcategoriaFiltro);
       }
 
-    }else if((toggleFechasFiltro == 'on') && (toggleCateFiltro == 'off')) {
+    } else if ((toggleFechasFiltro == 'on') && (toggleCateFiltro == 'off')) {
 
       dataForm.append('rTareasFecha', 'rTareasFecha');
       dataForm.append('rFechaInicioFiltro', inpFechaInicioFiltro);
       dataForm.append('rFechaFinFiltro', inpFechaFinFiltro);
 
-    }else if((toggleCateFiltro == 'on') && (toggleFechasFiltro == 'on')){
+    } else if ((toggleCateFiltro == 'on') && (toggleFechasFiltro == 'on')) {
 
-      if(contFiltroSubcate.style.display == 'none') {
+      if (contFiltroSubcate.style.display == 'none') {
         dataForm.append('rTareasCat&Fecha', 'rTareasCat&Fecha');
         dataForm.append('rCateFiltro', selCategoriaFiltro);
         dataForm.append('rFechaInicioFiltro', inpFechaInicioFiltro);
         dataForm.append('rFechaFinFiltro', inpFechaFinFiltro);
 
-      }else {
+      } else {
         dataForm.append('rTareasCatSub&Fecha', 'rTareasCatSub&Fecha');
         dataForm.append('rCateFiltro', selCategoriaFiltro);
         dataForm.append('rSubCateFiltro', selSubcategoriaFiltro);
         dataForm.append('rFechaInicioFiltro', inpFechaInicioFiltro);
         dataForm.append('rFechaFinFiltro', inpFechaFinFiltro);
       }
-      
+
     }
 
     let header = new Headers();
     header.append('Content-Type', 'text/html; charset=utf-8');
-    let config = {method: 'POST', header: header, mode: 'cors', cache: 'no-cache', body: dataForm}
+    let config = {
+      method: 'POST',
+      header: header,
+      mode: 'cors',
+      cache: 'no-cache',
+      body: dataForm
+    }
 
     fetch('<?php echo SERVERURL; ?>ajax/tarea-ajax.php', config)
       .then(res => res.json())
       .then(phpJsonRes => {
 
-        if(phpJsonRes.res == 'ok') {
-            //document.querySelector('.char-list').innerHTML = phpJsonRes.body;
-            document.querySelector('.cont-tareas').innerHTML = phpJsonRes.body;
-            initEscuchaElementos();
+        if (phpJsonRes.res == 'ok') {
+          //document.querySelector('.char-list').innerHTML = phpJsonRes.body;
+          document.querySelector('.cont-tareas').innerHTML = phpJsonRes.body;
+          initEscuchaElementos();
 
-          }else {
-            //msgLogin.style.display = 'block'
-            if(phpJsonRes.res == 'fail') {
-              Swal.fire({icon:'error', text: 'No se pudieron traer las tareas!'});
-              console.log('Error: ', phpJsonRes.error, phpJsonRes.queryString, 'Lugar: ', phpJsonRes.lugar);
-            } else if(phpJsonRes.res == 'nadaOk'){
-              Swal.fire({icon:'info', text: 'No hay datos con esa consulta!'});
-              console.log('Query: ', phpJsonRes.queryString, '\nLugar: ', phpJsonRes.lugar);
-            } 
-            else {
-              Swal.fire({icon:'error', text: 'No hubo respuesta del servidor al traer las tareas!'});
-            }
-            
-            //Reestablecer texto botón
-            document.querySelector('#btnAgregarTarea').innerHTML='Lista!';
-
+        } else {
+          //msgLogin.style.display = 'block'
+          if (phpJsonRes.res == 'fail') {
+            Swal.fire({
+              icon: 'error',
+              text: 'No se pudieron traer las tareas!'
+            });
+            console.log('Error: ', phpJsonRes.error, phpJsonRes.queryString, 'Lugar: ', phpJsonRes.lugar);
+          } else if (phpJsonRes.res == 'nadaOk') {
+            Swal.fire({
+              icon: 'info',
+              text: 'No hay datos con esa consulta!'
+            });
+            console.log('Query: ', phpJsonRes.queryString, '\nLugar: ', phpJsonRes.lugar);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              text: 'No hubo respuesta del servidor al traer las tareas!'
+            });
           }
+
+          //Reestablecer texto botón
+          document.querySelector('#btnAgregarTarea').innerHTML = 'Lista!';
+
+        }
       }); //Fin promesa
 
   }
@@ -921,13 +1023,19 @@
 
     let header = new Headers();
     header.append('Content-Type', 'text/html; charset=utf-8');
-    let config = {method: 'POST', header: header, mode: 'cors', cache: 'no-cache', body: dataForm}
+    let config = {
+      method: 'POST',
+      header: header,
+      mode: 'cors',
+      cache: 'no-cache',
+      body: dataForm
+    }
 
     fetch('<?php echo SERVERURL; ?>ajax/tarea-ajax.php', config)
       .then(res => res.json())
       .then(phpJsonRes => {
 
-        if(phpJsonRes.res == 'ok') {
+        if (phpJsonRes.res == 'ok') {
 
           document.querySelector('#inpTareaIdU').value = phpJsonRes.idTarea;
           document.querySelector('#selCategoriaU').value = phpJsonRes.idCat;
@@ -936,23 +1044,31 @@
           document.querySelector('#inpFechaU').value = phpJsonRes.fecha;
 
 
-          }else {
-            //msgLogin.style.display = 'block'
-            if(phpJsonRes.res == 'fail') {
-              Swal.fire({icon:'error', text: 'No se pudieron traer las tareas!'});
-              console.log('Error: ', phpJsonRes.error, phpJsonRes.queryString, 'Lugar: ', phpJsonRes.lugar);
-            } else if(phpJsonRes.res == 'nadaOk'){
-              Swal.fire({icon:'info', text: 'No hay datos con esa consulta!'});
-              console.log('Query: ', phpJsonRes.queryString, '\nLugar: ', phpJsonRes.lugar);
-            } 
-            else {
-              Swal.fire({icon:'error', text: 'No hubo respuesta del servidor al traer las tareas!'});
-            }
-            
-            //Reestablecer texto botón
-            document.querySelector('#btnAgregarTarea').innerHTML='Lista!';
-
+        } else {
+          //msgLogin.style.display = 'block'
+          if (phpJsonRes.res == 'fail') {
+            Swal.fire({
+              icon: 'error',
+              text: 'No se pudieron traer las tareas!'
+            });
+            console.log('Error: ', phpJsonRes.error, phpJsonRes.queryString, 'Lugar: ', phpJsonRes.lugar);
+          } else if (phpJsonRes.res == 'nadaOk') {
+            Swal.fire({
+              icon: 'info',
+              text: 'No hay datos con esa consulta!'
+            });
+            console.log('Query: ', phpJsonRes.queryString, '\nLugar: ', phpJsonRes.lugar);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              text: 'No hubo respuesta del servidor al traer las tareas!'
+            });
           }
+
+          //Reestablecer texto botón
+          document.querySelector('#btnAgregarTarea').innerHTML = 'Lista!';
+
+        }
       }); //Fin promesa
 
   }
@@ -978,44 +1094,56 @@
 
     let header = new Headers();
     header.append('Content-Type', 'text/html; charset=utf-8');
-    let config = {method: 'POST', header: header, mode: 'cors', cache: 'no-cache', body: dataForm}
+    let config = {
+      method: 'POST',
+      header: header,
+      mode: 'cors',
+      cache: 'no-cache',
+      body: dataForm
+    }
 
     fetch('<?php echo SERVERURL; ?>ajax/tarea-ajax.php', config)
       .then(res => res.json())
       .then(phpJsonRes => {
 
-        if(phpJsonRes.res == 'ok') {
-            //alert('Se generó excel?');
-            /* let hola = {"hola": "bien y tú como eñstás?? Bienvenido!"}; */
-            window.location.href = '<?php echo SERVERURL; ?>InformeTareas.xlsx'; 
+        if (phpJsonRes.res == 'ok') {
+          //alert('Se generó excel?');
+          /* let hola = {"hola": "bien y tú como eñstás?? Bienvenido!"}; */
+          window.location.href = '<?php echo SERVERURL; ?>InformeTareas.xlsx';
 
-          }else {
-            //msgLogin.style.display = 'block'
-            if(phpJsonRes.res == 'fail') {
-              Swal.fire({icon:'error', text: 'No se pudo descargar el archivo!'});
-              console.log('Error: ', phpJsonRes.error);
-            } else {
-              Swal.fire({icon:'error', text: 'No hubo respuesta del servidor al traer las listas!'});
-            }
-            
-            //Reestablecer texto botón
-            //document.querySelector('#btnAgregarTarea').innerHTML='Lista!';
-
+        } else {
+          //msgLogin.style.display = 'block'
+          if (phpJsonRes.res == 'fail') {
+            Swal.fire({
+              icon: 'error',
+              text: 'No se pudo descargar el archivo!'
+            });
+            console.log('Error: ', phpJsonRes.error);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              text: 'No hubo respuesta del servidor al traer las listas!'
+            });
           }
+
+          //Reestablecer texto botón
+          //document.querySelector('#btnAgregarTarea').innerHTML='Lista!';
+
+        }
       }); //Fin promesa
   }
 
   function toggleAcordeonFiltro() {
-    let acordeon = document.querySelector('.acordeon-filtro'); 
+    let acordeon = document.querySelector('.acordeon-filtro');
     let estado = acordeon.getAttribute('data-estado');
     let btnIco = document.querySelector('#btnIcoAcordeonFiltro');
 
-    if(estado == 'colapsado') {
+    if (estado == 'colapsado') {
       acordeon.style.display = 'block';
       acordeon.setAttribute('data-estado', '');
       btnIco.classList.remove('fa-chevron-down');
       btnIco.classList.add('fa-chevron-up');
-    }else {
+    } else {
       acordeon.style.display = 'none';
       acordeon.setAttribute('data-estado', 'colapsado');
       btnIco.classList.remove('fa-chevron-up');
@@ -1024,8 +1152,8 @@
   }
 
   function limpiarFormulario(contPadre) {
-    const CP = document.querySelector(contPadre);   
-    
+    const CP = document.querySelector(contPadre);
+
     //Limpiar inputs
     CP.querySelectorAll('input').forEach(input => {
       input.value = '';
@@ -1040,5 +1168,8 @@
     });
   }
 
-</script>
+  /* Idea para simplificar peticiones fetch */
+  function generaPeticion() {
 
+  }
+</script>

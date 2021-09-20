@@ -1,28 +1,28 @@
 <?php
-  class VistaModel {
+class VistaModel
+{
 
-    /* ----- Modelo para obtener las vistas -----*/
+  /* ----- Modelo para obtener las vistas -----*/
 
-    /* 1. Lista blanca de palabras permitidas para vistas en la url */
-    protected static function obtenerVistaModel($vista) {
-      $arrListaBlanca = ['tarea', 'lista-tareas', 'settings'];
-      if(in_array($vista, $arrListaBlanca)) {
-        
-        if(is_file('./view/content/' . $vista . '-view.php')) { //Si el archivo existe
-          $content =  './view/content/' . $vista . '-view.php';
-        }else {
-          $content = '404';
-        }
-        
-      }elseif($vista === 'login' || $vista === 'index') {
-        $content = 'login';
-      } elseif($vista === 'logout') {
-        $content = 'logout';
-      }else {
+  /* 1. Lista blanca de palabras permitidas para vistas en la url */
+  protected static function obtenerVistaModel($vista)
+  {
+    $arrListaBlanca = ['tarea', 'lista-tareas', 'settings', 'informe'];
+    if (in_array($vista, $arrListaBlanca)) {
+
+      if (is_file('./view/content/' . $vista . '-view.php')) { //Si el archivo existe
+        $content =  './view/content/' . $vista . '-view.php';
+      } else {
         $content = '404';
       }
-
-      return $content;
+    } elseif ($vista === 'login' || $vista === 'index') {
+      $content = 'login';
+    } elseif ($vista === 'logout') {
+      $content = 'logout';
+    } else {
+      $content = '404';
     }
 
+    return $content;
   }
+}
