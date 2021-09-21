@@ -4,9 +4,9 @@
 	}
 </style>
 
-<div class="main container">
+<div class="main container rounded p-4" style="overflow-x: scroll; background-color: #f1f1f1eb;">
 
-	<table id="tablaInforme" class="table display" style="background-color: oldlace;">
+	<table id="tablaInforme" class="table display">
 		<thead>
 			<tr>
 				<th scope="col">Descripción</th>
@@ -27,77 +27,7 @@
 		fechaHoy = `${hoy.getFullYear()}${hoy.getMonth()+1}${hoy.getDate()}`
 		document.querySelector('#tituloPagina').innerHTML = `Informe${fechaHoy}`;
 
-		// obtenerTareas();
-
-		const tablaInforme = new DataTable('#tablaInforme', {
-			responsive: 'true',
-			dom: 'Bfrtilp',
-			buttons: [{
-					extend: 'excelHtml5',
-					text: '<i class="fas fa-file-excel"></i>',
-					titleAttr: 'Exportar a Excel',
-					className: 'btn btn-success',
-				},
-				{
-					extend: 'pdfHtml5',
-					text: '<i class="fas fa-file-pdf"></i>',
-					titleAttr: 'Exportar a PDF',
-					className: 'btn btn-danger'
-				},
-				{
-					extend: 'print',
-					text: '<i class="fas fa-print"></i>',
-					titleAttr: 'Imprimir',
-					className: 'btn btn-info'
-				}
-			],
-			ajax: {
-				url: '<?php echo SERVERURL; ?>ajax/tarea-ajax.php',
-				// dataSrc: function(obj) {
-				// 	//const body = d;
-				// 	// console.log('body', body);
-				// 	return obj;
-
-				// 	document.querySelector('#tablaBody').innerHTML = `
-				// 	<tr> 
-				// 		<td> ${obj.body[0].descripcion} </td>
-				// 		<td> ${obj.body[0].categoria} </td>
-				// 		<td> ${obj.body[0].subcategoria} </td>
-				// 		<td> ${obj.body[0].fecha} </td>
-				// 	</tr>`;
-				// },
-				dataSrc: 'body',
-				method: 'POST',
-				data: {
-					tipoForm: 'read',
-					rTareasInforme: 'rTareasInforme'
-				}
-			},
-			// ajax: function(data, callback, settings) {
-			// 	console.log('data', data);
-			// 	console.log('settings', settings);
-			// 	settings.ajax.
-			// 	callback(
-			// 		JSON.parse(localStorage.getItem('dataTablesData'))
-			// 	);
-			// },
-			columns: [{
-					body: 'descripcion'
-				},
-				{
-					body: 'categoria'
-				},
-				{
-					body: 'subcategoria'
-				},
-				{
-					body: 'fecha'
-				}
-			]
-
-		});
-
-
+		obtenerTareas();
 
 	});
 
@@ -123,11 +53,61 @@
 			.then(phpJsonRes => {
 
 				if (phpJsonRes.res == 'ok') {
-					//document.querySelector('.char-list').innerHTML = phpJsonRes.body;
-
-					// document.querySelector('#tablaBody').innerHTML = phpJsonRes.body;
-
-					console.log(phpJsonRes.body);
+					const tablaInforme = new DataTable('#tablaInforme', {
+						responsive: 'true',
+						dom: 'Bfrtilp',
+						buttons: [{
+								extend: 'excelHtml5',
+								text: '<i class="fas fa-file-excel"></i>',
+								titleAttr: 'Exportar a Excel',
+								type: 'button',
+								className: 'btn btn-success bg-success',
+							},
+							{
+								extend: 'pdfHtml5',
+								text: '<i class="fas fa-file-pdf"></i>',
+								titleAttr: 'Exportar a PDF',
+								type: 'button',
+								className: 'btn btn-danger bg-danger'
+							},
+							{
+								extend: 'print',
+								text: '<i class="fas fa-print"></i>',
+								titleAttr: 'Imprimir',
+								type: 'button',
+								className: 'btn btn-info bg-secondary'
+							}
+						],
+						language: {
+							lengthMenu: 'Mostrar _MENU_ registros',
+							zeroRecords: 'No se encontraron resultados',
+							info: 'Registros en total - _TOTAL_',
+							infoEmpty: '0 registros',
+							infoFiltered: '(filtrado de un total de _MAX_ registros)',
+							sSearch: 'Buscar:',
+							oPaginate: {
+								sFirst: 'Primero',
+								sLast: 'Último',
+								sNext: 'Siguiente',
+								sPrevious: 'Anterior',
+							},
+							sProcessing: 'Procesando...',
+						},
+						aaData: phpJsonRes.body,
+						columns: [{
+								"data": "descripcion"
+							},
+							{
+								"data": "categoria"
+							},
+							{
+								"data": "subcategoria"
+							},
+							{
+								"data": "fecha"
+							}
+						]
+					});
 
 				} else {
 					//msgLogin.style.display = 'block'
