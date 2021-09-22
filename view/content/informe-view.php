@@ -6,7 +6,7 @@
 
 <div class="main container rounded p-4" style="overflow-x: scroll; background-color: #f1f1f1eb;">
 
-	<table id="tablaInforme" class="table display">
+	<table id="tablaInforme" class="table display" style="font-size: 1.2rem">
 		<thead>
 			<tr>
 				<th scope="col">Descripción</th>

@@ -379,7 +379,10 @@ class TareaController extends TareaModel
         $arrDatosTabla = [];
 
         for ($i = 0; $i < count($arrDatos); $i++) {
-          array_push($arrDatosTabla, ['descripcion' => $arrDatos[$i]['TAR_DESCRIPCION'], 'categoria' => $arrDatos[$i]['CAT_NOMBRE'], 'subcategoria' => $arrDatos[$i]['SUB_NOMBRE'], 'fecha' => $arrDatos[$i]['TAR_FECHA']]);
+          $arrFechaHora = explode(' ', $arrDatos[$i]['TAR_FECHA']);
+          $fecha = $arrFechaHora[0];
+          $hora = $arrFechaHora[1];
+          array_push($arrDatosTabla, ['descripcion' => $arrDatos[$i]['TAR_DESCRIPCION'], 'categoria' => $arrDatos[$i]['CAT_NOMBRE'], 'subcategoria' => $arrDatos[$i]['SUB_NOMBRE'], 'fecha' => $fecha]);
         }
 
         return json_encode(['res' => 'ok', 'body' => $arrDatosTabla]);
