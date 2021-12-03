@@ -5,12 +5,6 @@ if ($ajaxRequest) {
   require_once './model/TareaModel.php'; //Si entra acá queire decir que se está ejecutando desde index.php
 }
 
-require_once '../lib/vendor/autoload.php';
-
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use PhpOffice\PhpSpreadsheet\Style\Fill;
-
 class TareaController extends TareaModel
 {
 
@@ -583,81 +577,6 @@ class TareaController extends TareaModel
         return json_encode(['res' => 'ok']);
         $PDOTarea = null; //Cierra la conexión
         exit;
-      } else if ($CantResultados < 1) {
-        return json_encode(['res' => 'nadaOk', 'queryString' => $PDOTarea->queryString, 'lugar' => 'archivo ' .  __FILE__ . ' ~ linea ' . __LINE__]);
-        $PDOTarea = null; //Cierra la conexión
-        exit;
-      }
-    } else {
-      return json_encode(['res' => 'fail', 'error' => $PDOTarea->errorInfo(), 'queryString' => $PDOTarea->queryString, 'lugar' => 'archivo ' .  __FILE__ . ' ~ linea ' . __LINE__]);
-      $PDOTarea = null; //Cierra la conexión
-      exit;
-    }
-  }
-
-  public function generarPDFController()
-  {
-
-    session_start(['name' => 'daniapp']);
-    $usu_id = $_SESSION['id_daniapp'];
-
-    //Todas las tareas
-    $sQuery = "SELECT tt.PKTAR_ID, tt.TAR_DESCRIPCION, tt.TAR_FECHA, tc.CAT_NOMBRE, ts.SUB_NOMBRE FROM indegwgj_db_daniapp.tbl_tarea AS tt
-      JOIN indegwgj_db_daniapp.tbl_subcategoria AS ts ON tt.FKSUB_ID = ts.PKSUB_ID
-      JOIN indegwgj_db_daniapp.tbl_categoria AS tc ON ts.FKCAT_ID = tc.PKCAT_ID
-      WHERE tt.FKUSU_ID = '$usu_id'";
-
-    $PDOTarea = MainModel::runSimpleQuery($sQuery);
-
-    if ($PDOTarea == true) {
-      $CantResultados = $PDOTarea->rowCount();
-
-      if ($CantResultados > 0) {
-
-        $arrDatos = $PDOTarea->fetchAll();
-
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-
-        $sheet->setCellValue('A1', 'CATEGORÍA');
-        $sheet->setCellValue('B1', 'SUBCATEGORÍA');
-        $sheet->setCellValue('C1', 'DESCRIPCIÓN');
-        $sheet->setCellValue('D1', 'FECHA');
-
-        $j = 2; //Para comenzar poner los datos en la segunda fila
-
-        for ($i = 0; $i < count($arrDatos); $i++) {
-          $sheet->setCellValue('A' . $j, $arrDatos[$i]['CAT_NOMBRE']);
-          $sheet->setCellValue('B' . $j, $arrDatos[$i]['SUB_NOMBRE']);
-          $sheet->setCellValue('C' . $j, $arrDatos[$i]['TAR_DESCRIPCION']);
-          $sheet->setCellValue('D' . $j, $arrDatos[$i]['TAR_FECHA']);
-          $j++;
-        }
-
-        //Estilos para la primera fila
-        //1. Creación de los estilos
-        $styleArrayFirstRow = [
-          'font' => ['bold' => true],
-          'fill' => ['fillType' => Fill::FILL_SOLID, 'startColor' => ['argb' => 'FFBCdDF5']]
-        ];
-        //2. Obtener la ultima columna ocupada
-        $highestColumn = $sheet->getHighestColumn();
-        //3. Poner la primer columna en bold
-        $sheet->getStyle('A1:' . $highestColumn . '1')->applyFromArray($styleArrayFirstRow);
-
-        $writer = new Xlsx($spreadsheet);
-
-        try {
-          $writer->save('../InformeTareas.xlsx'); //Se guarda en la raíz del proyecto
-
-          return json_encode(['res' => 'ok']);
-          $PDOTarea = null; //Cierra la conexión
-          exit;
-        } catch (Exception $e) {
-          return json_encode(['res' => 'fail', 'error' => $e->getMessage()]);
-          $PDOTarea = null; //Cierra la conexión
-          exit;
-        }
       } else if ($CantResultados < 1) {
         return json_encode(['res' => 'nadaOk', 'queryString' => $PDOTarea->queryString, 'lugar' => 'archivo ' .  __FILE__ . ' ~ linea ' . __LINE__]);
         $PDOTarea = null; //Cierra la conexión

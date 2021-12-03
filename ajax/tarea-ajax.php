@@ -37,10 +37,6 @@ if (isset($_POST['tipoForm'])) {
       echo $insTarea->obtenerCantidadTareas();
     }
 
-    if (isset($_POST['rGeneraPDF'])) {
-      echo $insTarea->generarPDFController();
-    }
-
     if (isset($_POST['rTareasInforme'])) {
       echo $insTarea->obtenerTareasAllController();
     }

@@ -23,10 +23,6 @@
         </div>
 
         <div class="col col-lg-2 m-3 d-flex justify-content-center">
-          <a id="btnCopiarTareas" class="btn btn-primary py-2 px-4 fs-4"><i class="fas fa-file-excel"></i> Informe </a>
-        </div>
-
-        <div class="col col-lg-2 m-3 d-flex justify-content-center">
           <a id="btnToggleFiltro" class="btn btn-toggle-filtro py-2 px-4 fs-4 text-white"> Filtro <i class="fas fa-filter"></i> <i id="btnIcoAcordeonFiltro" class="fas fa-chevron-down"></i> </a>
         </div>
       </div>
@@ -365,10 +361,6 @@
     document.querySelector('#btnOcultarFiltroSubcate').addEventListener('click', (e) => {
       document.querySelector('#contFiltroSubcate').style.display = 'none';
     });
-
-    //boton copiar tareas
-    //document.querySelector('#btnCopiarTareas').addEventListener('click', copiarTareas);
-    document.querySelector('#btnCopiarTareas').addEventListener('click', generarExcel);
 
     //toggle abrir/cerrar acordeon filtro
     document.querySelector('#btnToggleFiltro').addEventListener('click', toggleAcordeonFiltro)
@@ -1085,52 +1077,6 @@
     document.querySelectorAll('.card-tarea').forEach(cardTarea => {
 
     });
-  }
-
-  function generarExcel() {
-    let dataForm = new FormData();
-    dataForm.append('tipoForm', 'read');
-    dataForm.append('rGeneraPDF', 'rGeneraPDF');
-
-    let header = new Headers();
-    header.append('Content-Type', 'text/html; charset=utf-8');
-    let config = {
-      method: 'POST',
-      header: header,
-      mode: 'cors',
-      cache: 'no-cache',
-      body: dataForm
-    }
-
-    fetch('<?php echo SERVERURL; ?>ajax/tarea-ajax.php', config)
-      .then(res => res.json())
-      .then(phpJsonRes => {
-
-        if (phpJsonRes.res == 'ok') {
-          //alert('Se generó excel?');
-          /* let hola = {"hola": "bien y tú como eñstás?? Bienvenido!"}; */
-          window.location.href = '<?php echo SERVERURL; ?>InformeTareas.xlsx';
-
-        } else {
-          //msgLogin.style.display = 'block'
-          if (phpJsonRes.res == 'fail') {
-            Swal.fire({
-              icon: 'error',
-              text: 'No se pudo descargar el archivo!'
-            });
-            console.log('Error: ', phpJsonRes.error);
-          } else {
-            Swal.fire({
-              icon: 'error',
-              text: 'No hubo respuesta del servidor al traer las listas!'
-            });
-          }
-
-          //Reestablecer texto botón
-          //document.querySelector('#btnAgregarTarea').innerHTML='Lista!';
-
-        }
-      }); //Fin promesa
   }
 
   function toggleAcordeonFiltro() {
